@@ -129,10 +129,13 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
 .modal-arcana-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);color:var(--gold2);margin-bottom:8px;background:rgba(201,168,76,0.06)}
 .modal-name{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,34px);font-weight:400;line-height:1.1;margin-bottom:8px;color:var(--text-bright)}
 .modal-brief{font-size:15px;font-style:italic;color:var(--text);line-height:1.6}
-.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;align-items:center}
-.tag{padding:4px 10px;border-radius:99px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;align-items:center;line-height:1}
+.modal-tags .yes-no-badge{margin-top:0}
+.tag{padding:5px 10px;border-radius:99px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.04em;line-height:1;display:inline-flex;align-items:center}
 .tag.element{background:rgba(155,111,196,0.12);border:1px solid rgba(155,111,196,0.3);color:var(--lavender)}
 .tag.energy{background:rgba(193,123,158,0.1);border:1px solid rgba(193,123,158,0.25);color:var(--pink)}
+/* yes-no badge dentro del modal-tags tiene que tener la misma altura que los .tag */
+.modal-tags .yes-no-badge{padding:5px 10px;font-size:11px;line-height:1;display:inline-flex;align-items:center;margin-top:0}
 .modal-body{padding:24px 24px 28px}
 .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .modal-section{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:16px}
