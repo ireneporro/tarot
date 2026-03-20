@@ -23,7 +23,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .app{position:relative;z-index:1;min-height:100vh}
 
 /* HEADER */
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--border2);background:rgba(8,5,16,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,0.4)}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--border2);background:rgba(8,5,16,0.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,0.4);gap:12px}
+.nav-pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .logo{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:0.2em;color:var(--gold)}
 .logo span{color:var(--muted);font-weight:400}
@@ -608,7 +609,7 @@ async function drawCards(){
   if(!cardsLoaded||allCards.length<3)return;
   const shuffled=[...allCards].sort(()=>Math.random()-0.5);
   drawnCards=[shuffled[0],shuffled[1],shuffled[2]];
-  for(let i=0;i<3;i++){const el=document.getElementById('card-'+i);el.classList.remove('revealed','flipping');document.getElementById('card-front-'+i).innerHTML='';}
+  for(let i=0;i<3;i++){const el=document.getElementById('card-'+i);el.classList.remove('revealed','flipping');const inner=el.querySelector('.tarot-card-inner');if(inner)inner.style.transform='';document.getElementById('card-front-'+i).innerHTML='';}
   const btn=document.getElementById('draw-btn'),ld=document.getElementById('loading-draw');
   btn.disabled=true;
   // 3D shuffle animation
@@ -628,7 +629,11 @@ function delay(ms){return new Promise(r=>setTimeout(r,ms))}
 function revealCard(i,c){
   const el=document.getElementById('card-'+i);
   const front=document.getElementById('card-front-'+i);
+  const inner=el.querySelector('.tarot-card-inner');
   front.innerHTML=`<div class="card-inner"><div class="card-number-display">${c['Card Number']||''}</div><div class="card-symbol">${getCardSymbol(c)}</div><div class="card-name-display">${c['Card Name']}</div><div class="card-keyword">${(c['Keywords Upright']||'').split(',')[0].trim()}</div></div>`;
+  // Reset any parallax transform and force the flip via inline style
+  inner.style.transition='transform 0.7s cubic-bezier(0.4,0,0.2,1)';
+  inner.style.transform='rotateY(180deg)';
   el.classList.add('revealed','flipping');
   playSound('reveal');
 }
@@ -795,6 +800,8 @@ function playSound(type){
 function initParallax(){
   document.addEventListener('mousemove',e=>{
     document.querySelectorAll('.tarot-card').forEach(card=>{
+      // NEVER touch transform on cards that are flipped/revealed
+      if(card.classList.contains('flipping'))return;
       const rect=card.getBoundingClientRect();
       const centerX=rect.left+rect.width/2;
       const centerY=rect.top+rect.height/2;
@@ -806,18 +813,16 @@ function initParallax(){
         const rotY=(dx/rect.width)*15*factor;
         const rotX=-(dy/rect.height)*15*factor;
         const inner=card.querySelector('.tarot-card-inner');
-        if(inner&&!card.classList.contains('flipping')){
+        if(inner){
           inner.style.transition='transform 0.15s ease-out';
-          inner.style.transform=`rotateX(${rotX}deg) rotateY(${rotY}deg)${card.classList.contains('flipping')?' rotateY(180deg)':''}`;
+          inner.style.transform=`rotateX(${rotX}deg) rotateY(${rotY}deg)`;
         }
-        // Move glow to cursor position
         const glow=card.querySelector('.parallax-glow');
         if(glow){
           const px=((e.clientX-rect.left)/rect.width)*100;
           const py=((e.clientY-rect.top)/rect.height)*100;
           glow.style.background=`radial-gradient(circle at ${px}% ${py}%,rgba(201,168,76,0.18),transparent 60%)`;
         }
-        // Move shine
         const shine=card.querySelector('.parallax-shine');
         if(shine){
           const angle=Math.atan2(dy,dx)*180/Math.PI;
@@ -825,9 +830,9 @@ function initParallax(){
         }
       }else{
         const inner=card.querySelector('.tarot-card-inner');
-        if(inner&&!card.classList.contains('flipping')){
+        if(inner){
           inner.style.transition='transform 0.4s ease-out';
-          inner.style.transform=card.classList.contains('flipping')?'rotateY(180deg)':'rotateX(0) rotateY(0)';
+          inner.style.transform='rotateX(0) rotateY(0)';
         }
       }
     });
@@ -838,7 +843,7 @@ function initParallax(){
 function updateStreak(){const today=new Date().toDateString();const lastVisit=localStorage.getItem('skt_lastVisit')||'';let streak=parseInt(localStorage.getItem('skt_streak')||'0');if(lastVisit!==today){const yesterday=new Date(Date.now()-86400000).toDateString();streak=(lastVisit===yesterday)?streak+1:1;localStorage.setItem('skt_streak',streak);localStorage.setItem('skt_lastVisit',today);}if(streak<1)streak=1;document.getElementById('streak-num').textContent=streak;if(streak>=7)document.querySelector('.streak-fire').textContent='🌟';if(streak>=30)document.querySelector('.streak-fire').textContent='👑';}
 
 /* ═══ DAILY CARD ═══ */
-function setDailyCard(){if(allCards.length===0)return;const d=new Date();const seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();const idx=seed%allCards.length;dailyCard=allCards[idx];document.getElementById('dcb-emoji').textContent=getCardSymbol(dailyCard);document.getElementById('dcb-name').textContent=dailyCard['Card Name'];}
+function setDailyCard(){if(allCards.length===0)return;const d=new Date();const seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();const idx=seed%allCards.length;dailyCard=allCards[idx];document.getElementById('dcb-emoji').textContent=getCardSymbol(dailyCard);document.getElementById('dcb-name').textContent=dailyCard['Card Name'];document.getElementById('daily-card-badge').classList.add('visible');}
 
 /* ═══ CONFETTI ═══ */
 function launchConfetti(){const c=document.getElementById('confetti-canvas'),ctx=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;const pieces=[],colors=['#c9a84c','#e8c96a','#9b6fc4','#c17b9e','#f5dfa0','#ffffff'];for(let i=0;i<120;i++)pieces.push({x:c.width/2+Math.random()*200-100,y:c.height*0.4,vx:(Math.random()-0.5)*12,vy:-Math.random()*14-4,r:Math.random()*6+2,color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,vr:Math.random()*10-5,life:1,shape:Math.random()>0.5?'rect':'circle'});let frame=0;function draw(){ctx.clearRect(0,0,c.width,c.height);let alive=false;pieces.forEach(p=>{if(p.life<=0)return;alive=true;p.x+=p.vx;p.y+=p.vy;p.vy+=0.25;p.vx*=0.99;p.rot+=p.vr;p.life-=0.008;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.globalAlpha=p.life;ctx.fillStyle=p.color;if(p.shape==='rect')ctx.fillRect(-p.r/2,-p.r*1.5,p.r,p.r*3);else{ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill();}ctx.restore();});frame++;if(alive&&frame<300)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height);}draw();}
