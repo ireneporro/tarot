@@ -382,10 +382,18 @@ async function generateDailyReading(cards){
   const desc=cards.map((c,i)=>{const pos=['Pasado','Presente','Futuro'][i];return`${pos}: ${c['Card Name']} (${c['Card Number']})\n  Tema: ${c['Core Theme']}\n  Emocional: ${c['Emotional Meaning']||'—'}\n  Carrera: ${c['Career Meaning']||'—'}\n  Espiritual: ${c['Spiritual Layer']||'—'}\n  Sombra: ${c['Psychological Shadow']||'—'}\n  Afirmación: ${c['Affirmation']||'—'}`;}).join('\n\n');
   try{
     const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,messages:[{role:"user",content:`Sos una lectora de tarot experta, poética y profunda del Solar Kingdom Tarot.\n\nLa usuaria tiró estas tres cartas hoy:\n\n${desc}\n\nEscribí una lectura del día en español rioplatense que cubra:\n- PASADO: Qué energía pasada está activa, cómo influye ahora. Sé específica con el significado de la carta.\n- PRESENTE: Profundizá en la carta central — qué está atravesando, qué le pide emocionalmente y en su camino. Usá el significado emocional y espiritual de la carta.\n- FUTURO: Qué se abre si sigue el mensaje. Qué promete esta carta concretamente.\n- CIERRE: Un mensaje que una las tres en una guía accionable.\n\nTono íntimo, directo, como hablándole a una amiga que conocés bien. Mencioná cada carta por nombre. Sé ESPECÍFICA con los significados reales de cada carta — no seas genérica ni superficial. Incluí la sombra si es relevante. Terminá con una pregunta reflexiva poderosa.\n\nEntre 150-200 palabras. No uses títulos, bullets ni numeración. Escribí en prosa fluida, un solo texto corrido.\nRespondé SOLO con la lectura.`}]})});
-    const d=await r.json();textEl.textContent=d.content?.[0]?.text||'';
+    const d=await r.json();
+    const aiText=d.content?.[0]?.text||'';
+    if(aiText.length>20){textEl.textContent=aiText;}else{throw new Error('empty');}
     const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
     if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
-  }catch(e){textEl.textContent=`${cards[0]['Card Name']} te invita a mirar atrás. ${cards[1]['Card Name']} revela la energía de este momento — ${(cards[1]['Core Theme']||'').toLowerCase()}. Hacia adelante, ${cards[2]['Card Name']} ilumina el camino.`;}
+  }catch(e){
+    console.log('Using fallback reading:',e);
+    const c0=cards[0],c1=cards[1],c2=cards[2];
+    textEl.textContent=`Desde el pasado, ${c0['Card Name']} trae la energía de ${(c0['Core Theme']||'').toLowerCase()}. ${c0['Emotional Meaning']||''} En tu presente, ${c1['Card Name']} habla de ${(c1['Core Theme']||'').toLowerCase()} — ${c1['Emotional Meaning']||''} ${c1['Spiritual Layer']||''} Mirando hacia adelante, ${c2['Card Name']} ilumina tu camino con ${(c2['Core Theme']||'').toLowerCase()}. ${c2['Career Meaning']||''} Cuidá la sombra de ${c2['Card Name']}: ${(c2['Psychological Shadow']||'').toLowerCase()}. Tu afirmación de hoy: "${c1['Affirmation']||''}"`;
+    const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
+    if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
+  }
 }
 
 /* ═══ MI TIRADA MANUAL ═══ */
@@ -472,10 +480,19 @@ async function interpretManualSpread(){
   const cw=cards.length===1?'una carta':cards.length===2?'dos cartas':cards.length===3?'tres cartas':`${cards.length} cartas`;
   try{
     const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:`Sos una lectora de tarot poética y perspicaz, del Solar Kingdom Tarot.\nLa persona tiró ${cw} físicamente:\n${desc}\nEscribí una interpretación en español rioplatense, unificando todas las cartas en narrativa fluida. Tono lírico, íntimo, directo. Si es una carta, hablá de su energía. Si son varias, tejé una historia. Mencioná cada carta naturalmente. Terminá con pregunta o invitación reflexiva. Máximo 120 palabras. Respondé SOLO con la interpretación.`}]})});
-    const d=await r.json();textEl.textContent=d.content?.[0]?.text||'No pude generar la lectura.';
+    const d=await r.json();
+    const aiText=d.content?.[0]?.text||'';
+    if(aiText.length>20){textEl.textContent=aiText;}else{throw new Error('empty');}
   }catch(e){
-    if(cards.length===1)textEl.textContent=`${cards[0]['Card Name']} te habla hoy de ${(cards[0]['Core Theme']||'').toLowerCase()}. Escuchá su mensaje.`;
-    else textEl.textContent=cards.map(c=>c['Card Name']).join(' y ')+' conversan sobre tu momento presente.';
+    console.log('Using fallback interpretation:',e);
+    if(cards.length===1){
+      const c=cards[0];
+      textEl.textContent=`${c['Card Name']} se presenta hoy con la energía de ${(c['Core Theme']||'').toLowerCase()}. ${c['Emotional Meaning']||''} En lo espiritual, ${c['Spiritual Layer']||''} Cuidá la sombra: ${(c['Psychological Shadow']||'').toLowerCase()}. Tu afirmación: "${c['Affirmation']||''}"`;
+    }else{
+      let txt=cards.map((c,i)=>`${c['Card Name']} (posición ${i+1}) trae ${(c['Core Theme']||'').toLowerCase()}. ${c['Emotional Meaning']||''}`).join(' ');
+      txt+=` Sombra a cuidar: ${(cards[cards.length-1]['Psychological Shadow']||'').toLowerCase()}. Afirmación: "${cards[0]['Affirmation']||''}"`;
+      textEl.textContent=txt;
+    }
   }
   btn.disabled=false;btn.textContent='✦ Interpretar Tirada';
 }
