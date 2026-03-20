@@ -250,13 +250,21 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
 .mw-layer.active{background:rgba(155,111,196,0.15);border-color:rgba(155,111,196,0.35);color:var(--lavender)}
 .mw-stop{display:block;width:100%;padding:5px 0;border-radius:99px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.05em;border:1px solid rgba(248,113,113,0.2);background:rgba(248,113,113,0.06);color:#fca5a5;cursor:pointer;transition:all 0.15s;text-align:center}
 .mw-stop:hover{background:rgba(248,113,113,0.15);border-color:rgba(248,113,113,0.35)}
+/* mobile: solo círculo con emoji, sin texto ni barras ni panel */
+@media(max-width:768px){
+  .mw{bottom:12px;left:12px}
+  .mw-btn{width:40px;height:40px;padding:0;border-radius:50%;justify-content:center;gap:0}
+  .mw-btn .mw-e{font-size:18px}
+  .mw-bars-wrap{display:none}
+  .mw-btn span:last-child{display:none}
+  .mw-panel{display:none!important}
+}
 
 /* ═══ FIXED ELEMENTS ═══ */
 .confetti-canvas{position:fixed;inset:0;z-index:9997;pointer-events:none}
-.streak-badge{position:fixed;bottom:16px;right:16px;z-index:50;background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(155,111,196,0.08));border:1px solid var(--border2);border-radius:14px;padding:8px 12px;display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--gold2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:default;transition:all 0.3s}
-.streak-fire{font-size:14px;animation:streakPulse 2s ease-in-out infinite}
-.streak-num{font-size:16px;font-weight:700;font-family:'Cinzel',serif;color:var(--gold3)}
-@keyframes streakPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+/* streak removido completamente */
+.streak-badge{display:none!important}
+@keyframes streakPulse{}
 .shake-hint{display:none;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;margin-top:8px}
 .daily-card-badge{position:fixed;top:72px;right:12px;z-index:50;background:linear-gradient(160deg,rgba(22,14,36,0.9),rgba(14,9,24,0.95));border:1px solid var(--border2);border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;transition:all 0.3s;max-width:180px;visibility:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .daily-card-badge.visible{visibility:visible}
@@ -264,6 +272,13 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
 .daily-card-badge-emoji{font-size:20px}
 .daily-card-badge-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);line-height:1.3}
 .daily-card-badge-name{font-family:'Cinzel',serif;font-size:12px;color:var(--gold2);margin-top:1px}
+/* mobile: pequeño, pegado arriba a la derecha, sin label de texto */
+@media(max-width:768px){
+  .daily-card-badge{top:8px;right:8px;padding:5px 8px;gap:4px;border-radius:10px;max-width:unset;z-index:150}
+  .daily-card-badge-emoji{font-size:15px}
+  .daily-card-badge-text{display:none}
+  .daily-card-badge-name{font-size:10px;margin-top:0;white-space:nowrap}
+}
 .meditate-btn{display:none;margin:16px auto 0;padding:8px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--lavender);background:rgba(155,111,196,0.08);border:1px solid rgba(155,111,196,0.25);border-radius:99px;cursor:pointer;transition:all 0.3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .meditate-btn:hover{background:rgba(155,111,196,0.15);color:#d4b8f0}
 .meditate-overlay{position:fixed;inset:0;z-index:600;background:rgba(4,2,8,0.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.6s}
@@ -326,9 +341,6 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
   .shake-hint{display:block}
   .spread-container{gap:10px;padding:24px 0}
   .modal-grid{grid-template-columns:1fr}
-  .daily-card-badge{top:auto;bottom:56px;right:12px}
-  .streak-badge{bottom:16px;right:12px}
-  .mw{bottom:12px;left:12px}
   /* Agrandar zona táctil de botones en mobile */
   .nav-pill,.filter-btn,.draw-btn,.interpret-btn{min-height:44px}
   .picker-item{min-height:52px}
