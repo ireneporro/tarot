@@ -6,37 +6,43 @@
 <title>☀️ Solar Kingdom Tarot</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;500;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:#080510;--bg2:#0e0918;--bg3:#160e24;--surface:rgba(22,14,36,0.75);
-  --gold:#c9a84c;--gold2:#e8c96a;--gold-dim:rgba(201,168,76,0.18);
-  --pink:#c17b9e;--lavender:#9b6fc4;--text:#f0e6d3;--muted:rgba(240,230,211,0.42);
-  --border:rgba(201,168,76,0.15);--border2:rgba(201,168,76,0.3);--radius:16px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080510;--bg2:#0e0918;--bg3:#130d22;--surface:rgba(22,14,36,0.8);
+  --gold:#c9a84c;--gold2:#e8c96a;--gold3:#f5dfa0;--gold-dim:rgba(201,168,76,0.14);
+  --pink:#d48fb2;--lavender:#b48fd4;--text:#f0e6d3;--text-bright:#faf4eb;
+  --muted:rgba(240,230,211,0.5);--muted-soft:rgba(240,230,211,0.35);
+  --border:rgba(201,168,76,0.12);--border2:rgba(201,168,76,0.28);--radius:16px;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.032;pointer-events:none;z-index:9999}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.028;pointer-events:none;z-index:9999}
 .stars-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 10%,rgba(155,111,196,0.12) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(193,123,158,0.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 80%)}
 .stars-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 60% 15%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 80% 40%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 92% 70%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 5% 80%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 45% 85%,rgba(201,168,76,0.7) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 70% 60%,rgba(201,168,76,0.5) 0%,transparent 100%)}
 .app{position:relative;z-index:1;min-height:100vh}
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--border);background:rgba(8,5,16,0.8);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--border);background:rgba(8,5,16,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:sticky;top:0;z-index:100}
 .logo{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:0.2em;color:var(--gold)}
 .logo span{color:var(--muted);font-weight:400}
 .nav-pills{display:flex;gap:6px;flex-wrap:wrap}
-.nav-pill{padding:6px 18px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--muted);transition:all 0.2s ease}
-.nav-pill:hover{color:var(--text);border-color:var(--border)}
+.nav-pill{padding:7px 20px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--muted);transition:all 0.25s ease}
+.nav-pill:hover{color:var(--text);border-color:var(--border2)}
 .nav-pill.active{background:var(--gold-dim);border-color:var(--border2);color:var(--gold2)}
 .view{display:none;padding:40px;max-width:1400px;margin:0 auto}
 .view.active{display:block;animation:fadeUp 0.4s ease forwards}
-/* TIRADA DEL DÍA */
+
+/* TIRADA HERO */
 .tirada-hero{text-align:center;padding:60px 20px 40px}
-.tirada-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:12px}
-.tirada-title{font-family:'Cinzel',serif;font-size:clamp(32px,5vw,56px);font-weight:400;color:var(--text);margin-bottom:8px;line-height:1.1}
+.tirada-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:12px}
+.tirada-title{font-family:'Cinzel',serif;font-size:clamp(32px,5vw,56px);font-weight:400;color:var(--text-bright);margin-bottom:8px;line-height:1.1}
 .tirada-subtitle{font-size:18px;font-style:italic;color:var(--muted)}
 .spread-container{display:flex;justify-content:center;align-items:center;gap:32px;padding:48px 0;flex-wrap:wrap}
 .tarot-card-slot{display:flex;flex-direction:column;align-items:center;gap:12px}
 .slot-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
-.tarot-card{width:140px;height:240px;border-radius:12px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.4s ease,box-shadow 0.4s ease;transform-style:preserve-3d}
+
+/* TAROT CARD */
+.tarot-card{width:140px;height:240px;border-radius:12px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;position:relative;overflow:hidden;transition:transform 0.4s ease,box-shadow 0.4s ease}
 .tarot-card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(201,168,76,0.03) 4px,rgba(201,168,76,0.03) 5px),linear-gradient(135deg,rgba(155,111,196,0.06) 0%,transparent 50%,rgba(193,123,158,0.06) 100%)}
 .tarot-card::after{content:'☀';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;opacity:0.08;transition:opacity 0.3s ease}
 .tarot-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 24px 60px rgba(201,168,76,0.15),0 0 0 1px var(--border2)}
@@ -44,123 +50,133 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 .tarot-card.revealed{background:linear-gradient(160deg,#1a1030 0%,#0f0820 100%);border-color:var(--gold);box-shadow:0 0 40px rgba(201,168,76,0.12);cursor:pointer}
 .tarot-card.revealed::after{display:none}
 .card-inner{position:absolute;inset:0;display:flex;flex-direction:column;padding:14px 12px}
-.card-number-display{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);opacity:0.7;letter-spacing:0.15em}
+.card-number-display{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);opacity:0.8;letter-spacing:0.15em}
 .card-symbol{flex:1;display:flex;align-items:center;justify-content:center;font-size:40px;line-height:1}
 .card-name-display{font-family:'Cinzel',serif;font-size:10px;text-align:center;color:var(--gold2);letter-spacing:0.05em;line-height:1.3}
 .card-keyword{font-style:italic;font-size:10px;text-align:center;color:var(--muted);margin-top:4px;font-family:'Cormorant Garamond',serif}
-.draw-btn{display:block;margin:0 auto;padding:16px 48px;font-family:'Cinzel',serif;font-size:14px;letter-spacing:0.15em;color:var(--gold);background:var(--gold-dim);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden}
+
+/* BUTTONS */
+.draw-btn{display:block;margin:0 auto;padding:16px 48px;font-family:'Cinzel',serif;font-size:14px;letter-spacing:0.15em;color:var(--gold2);background:var(--gold-dim);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:all 0.3s ease;position:relative;overflow:hidden}
 .draw-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.1),transparent);opacity:0;transition:opacity 0.3s ease}
-.draw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.15)}
+.draw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.18);color:var(--gold3)}
 .draw-btn:hover::before{opacity:1}
 .draw-btn:disabled{opacity:0.4;cursor:default;transform:none}
 .loading-state{display:flex;align-items:center;gap:10px;justify-content:center;color:var(--muted);font-style:italic;font-size:16px;padding:20px}
 .spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.daily-message{max-width:680px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;backdrop-filter:blur(12px);animation:fadeUp 0.6s ease forwards;display:none}
+
+/* DAILY MESSAGE */
+.daily-message{max-width:680px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:fadeUp 0.6s ease forwards;display:none}
 .daily-message.visible{display:block}
-.daily-message-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:12px}
-.daily-message-text{font-size:17px;font-style:italic;line-height:1.7;color:var(--text)}
-.yes-no-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;margin-top:16px}
-.yes-no-badge.yes{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:#4ade80}
-.yes-no-badge.no{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);color:#f87171}
-.yes-no-badge.neutral{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);color:#fbbf24}
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(8,5,16,0.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+.daily-message-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:12px}
+.daily-message-text{font-size:17px;font-style:italic;line-height:1.7;color:var(--text-bright)}
+.yes-no-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;margin-top:16px;font-weight:400}
+.yes-no-badge.yes{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.35);color:#6ee7a0}
+.yes-no-badge.no{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.35);color:#fca5a5}
+.yes-no-badge.neutral{background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fcd34d}
+
+/* ═══ MODAL ═══ */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(8,5,16,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{width:100%;max-width:900px;max-height:90vh;overflow-y:auto;background:var(--bg3);border:1px solid var(--border2);border-radius:24px;transform:translateY(24px) scale(0.97);transition:transform 0.4s ease;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.modal{width:100%;max-width:900px;max-height:90vh;overflow-y:auto;background:linear-gradient(180deg,#1a1030 0%,var(--bg3) 100%);border:1px solid var(--border2);border-radius:24px;transform:translateY(24px) scale(0.97);transition:transform 0.4s ease;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
 .modal-overlay.open .modal{transform:translateY(0) scale(1)}
 .modal-header{padding:40px 40px 0;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start}
-.modal-card-visual{width:110px;height:188px;border-radius:12px;border:1px solid var(--gold);background:linear-gradient(160deg,#1a1030,#0f0820);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 40px rgba(201,168,76,0.1);flex-shrink:0}
+.modal-card-visual{width:110px;height:188px;border-radius:12px;border:1px solid var(--gold);background:linear-gradient(160deg,#1e1440,#0f0820);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 40px rgba(201,168,76,0.1);flex-shrink:0}
 .modal-card-emoji{font-size:44px}
-.modal-card-num{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:0.15em}
-.modal-arcana-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;padding:4px 12px;border-radius:99px;border:1px solid var(--border2);color:var(--gold);margin-bottom:10px}
-.modal-name{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,34px);font-weight:400;line-height:1.1;margin-bottom:10px}
+.modal-card-num{font-family:'Cinzel',serif;font-size:11px;color:var(--gold2);letter-spacing:0.15em}
+.modal-arcana-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:99px;border:1px solid var(--border2);color:var(--gold2);margin-bottom:10px;background:rgba(201,168,76,0.06)}
+.modal-name{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,34px);font-weight:400;line-height:1.1;margin-bottom:10px;color:var(--text-bright)}
 .modal-brief{font-size:16px;font-style:italic;color:var(--muted);line-height:1.6;max-width:420px}
-.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.tag{padding:3px 10px;border-radius:99px;font-size:11px;font-family:'DM Mono',monospace;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold)}
-.tag.element{background:rgba(155,111,196,0.1);border-color:rgba(155,111,196,0.3);color:#b48fd4}
-.tag.energy{background:rgba(193,123,158,0.1);border-color:rgba(193,123,158,0.3);color:var(--pink)}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+.tag{padding:4px 12px;border-radius:99px;font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+.tag.element{background:rgba(155,111,196,0.12);border:1px solid rgba(155,111,196,0.3);color:var(--lavender)}
+.tag.energy{background:rgba(193,123,158,0.1);border:1px solid rgba(193,123,158,0.25);color:var(--pink)}
 .modal-body{padding:32px 40px 40px}
 .modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 @media(max-width:600px){.modal-grid{grid-template-columns:1fr}}
-.modal-section{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;padding:20px}
+.modal-section{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:20px}
 .modal-section.full{grid-column:1 / -1}
-.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:10px}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);opacity:0.75;margin-bottom:10px}
 .section-text{font-size:15px;line-height:1.65;color:var(--text)}
 .section-text.italic{font-style:italic;color:var(--muted)}
 .keywords-row{display:flex;flex-wrap:wrap;gap:6px}
-.kw{padding:4px 12px;border-radius:99px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text)}
-.kw.reversed{background:rgba(248,113,113,0.06);border-color:rgba(248,113,113,0.2);color:#f8a5a5}
-.affirmation-box{background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(155,111,196,0.06));border:1px solid var(--border2);border-radius:14px;padding:24px;margin-top:16px;text-align:center}
-.affirmation-text{font-size:18px;font-style:italic;line-height:1.6;color:var(--gold2)}
-.personal-box{background:rgba(193,123,158,0.05);border:1px solid rgba(193,123,158,0.2);border-radius:14px;padding:20px;margin-top:16px}
-.modal-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);border-radius:99px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all 0.2s ease}
-.modal-close:hover{color:var(--text);border-color:var(--border2)}
-/* MAZO */
+.kw{padding:5px 14px;border-radius:99px;font-size:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text)}
+.kw.reversed{background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.25);color:#fca5a5}
+.affirmation-box{background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(155,111,196,0.06));border:1px solid var(--border2);border-radius:14px;padding:24px;margin-top:16px;text-align:center}
+.affirmation-text{font-size:18px;font-style:italic;line-height:1.6;color:var(--gold3)}
+.personal-box{background:rgba(193,123,158,0.06);border:1px solid rgba(193,123,158,0.2);border-radius:14px;padding:20px;margin-top:16px}
+.modal-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.06);border:1px solid var(--border2);color:var(--muted);border-radius:99px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all 0.2s ease;z-index:10}
+.modal-close:hover{color:var(--text-bright);border-color:var(--gold);background:rgba(201,168,76,0.08)}
+
+/* ═══ MAZO ═══ */
 .search-area{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;align-items:center}
 .search-input{flex:1;min-width:220px;padding:12px 20px;background:var(--surface);border:1px solid var(--border);border-radius:99px;color:var(--text);font-family:'Cormorant Garamond',serif;font-size:16px;outline:none;transition:border-color 0.2s ease}
-.search-input:focus{border-color:var(--border2)}
-.search-input::placeholder{color:var(--muted);font-style:italic}
+.search-input:focus{border-color:var(--gold)}
+.search-input::placeholder{color:var(--muted-soft);font-style:italic}
 .filter-btn{padding:10px 18px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s ease}
-.filter-btn:hover,.filter-btn.active{background:var(--gold-dim);border-color:var(--border2);color:var(--gold)}
+.filter-btn:hover,.filter-btn.active{background:var(--gold-dim);border-color:var(--border2);color:var(--gold2)}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px}
-.grid-card{border-radius:14px;border:1px solid var(--border);background:var(--bg3);overflow:hidden;cursor:pointer;transition:all 0.3s ease;position:relative}
+.grid-card{border-radius:14px;border:1px solid var(--border);background:var(--bg3);overflow:hidden;cursor:pointer;transition:all 0.3s ease}
 .grid-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(201,168,76,0.08)}
 .grid-card-top{height:120px;display:flex;align-items:center;justify-content:center;font-size:36px;background:linear-gradient(160deg,rgba(155,111,196,0.06),rgba(193,123,158,0.06));border-bottom:1px solid var(--border);position:relative}
-.grid-card-num{position:absolute;top:8px;left:10px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);opacity:0.6}
+.grid-card-num{position:absolute;top:8px;left:10px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);opacity:0.7}
 .grid-card-body{padding:12px 12px 14px}
-.grid-card-name{font-family:'Cinzel',serif;font-size:12px;line-height:1.3;margin-bottom:5px;color:var(--text)}
+.grid-card-name{font-family:'Cinzel',serif;font-size:12px;line-height:1.3;margin-bottom:5px;color:var(--text-bright)}
 .grid-card-theme{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4}
 .grid-card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
-.mini-badge{font-size:9px;padding:2px 7px;border-radius:99px;font-family:'DM Mono',monospace;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold)}
+.mini-badge{font-size:9px;padding:3px 8px;border-radius:99px;font-family:'DM Mono',monospace;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold)}
+.mini-badge.energy-badge{background:rgba(193,123,158,0.1);border-color:rgba(193,123,158,0.25);color:var(--pink)}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-style:italic;font-size:17px}
-/* MI TIRADA MANUAL */
+
+/* ═══ MI TIRADA MANUAL ═══ */
 .manual-spread-area{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;justify-content:center;padding:32px 0}
 .manual-slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
 .manual-slot-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
-.manual-card-placeholder{width:140px;height:240px;border-radius:12px;border:2px dashed var(--border2);background:rgba(22,14,36,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all 0.3s ease;position:relative}
+.manual-card-placeholder{width:140px;height:240px;border-radius:12px;border:2px dashed var(--border2);background:rgba(22,14,36,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all 0.3s ease}
 .manual-card-placeholder:hover{border-color:var(--gold);background:rgba(201,168,76,0.05)}
 .manual-card-placeholder .placeholder-icon{font-size:28px;opacity:0.25;transition:opacity 0.3s}
 .manual-card-placeholder:hover .placeholder-icon{opacity:0.5}
 .manual-card-placeholder .placeholder-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em}
-.remove-slot-btn{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:rgba(248,113,113,0.15);border:1px solid rgba(248,113,113,0.3);color:#f87171;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;z-index:2}
+.remove-slot-btn{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:rgba(248,113,113,0.15);border:1px solid rgba(248,113,113,0.3);color:#fca5a5;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;z-index:2}
 .manual-slot:hover .remove-slot-btn{opacity:1}
 .add-slot-btn{width:140px;height:240px;border-radius:12px;border:2px dashed var(--border);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all 0.3s ease;color:var(--muted)}
-.add-slot-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.03)}
+.add-slot-btn:hover{border-color:var(--gold);color:var(--gold2);background:rgba(201,168,76,0.03)}
 .add-slot-btn .plus-icon{font-size:32px;font-weight:300;line-height:1}
 .add-slot-btn .plus-text{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em}
-/* CARD PICKER DROPDOWN */
-.card-picker-overlay{position:fixed;inset:0;z-index:400;background:rgba(8,5,16,0.85);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+.manual-reading{max-width:680px;margin:24px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none}
+.manual-reading.visible{display:block;animation:fadeUp 0.6s ease forwards}
+.interpret-btn{display:block;margin:16px auto 0;padding:12px 36px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.12em;color:var(--gold2);background:var(--gold-dim);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:all 0.3s ease}
+.interpret-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.15);color:var(--gold3)}
+.interpret-btn:disabled{opacity:0.4;cursor:default;transform:none}
+.manual-clear-btn{display:block;margin:12px auto 0;padding:8px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:99px;cursor:pointer;transition:all 0.2s}
+.manual-clear-btn:hover{color:#fca5a5;border-color:rgba(248,113,113,0.3)}
+
+/* ═══ CARD PICKER ═══ */
+.card-picker-overlay{position:fixed;inset:0;z-index:400;background:rgba(8,5,16,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
 .card-picker-overlay.open{opacity:1;pointer-events:all}
-.card-picker{width:100%;max-width:560px;max-height:80vh;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transform:translateY(16px) scale(0.97);transition:transform 0.3s ease}
+.card-picker{width:100%;max-width:560px;max-height:80vh;background:linear-gradient(180deg,#1a1030 0%,var(--bg3) 100%);border:1px solid var(--border2);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transform:translateY(16px) scale(0.97);transition:transform 0.3s ease}
 .card-picker-overlay.open .card-picker{transform:translateY(0) scale(1)}
 .picker-header{padding:20px 24px 14px;border-bottom:1px solid var(--border)}
 .picker-title{font-family:'Cinzel',serif;font-size:18px;margin-bottom:12px;color:var(--gold2)}
 .picker-search{width:100%;padding:10px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:99px;color:var(--text);font-family:'Cormorant Garamond',serif;font-size:15px;outline:none}
-.picker-search:focus{border-color:var(--border2)}
-.picker-search::placeholder{color:var(--muted);font-style:italic}
+.picker-search:focus{border-color:var(--gold)}
+.picker-search::placeholder{color:var(--muted-soft);font-style:italic}
 .picker-filters{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .picker-filter-btn{padding:5px 12px;border-radius:99px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s}
-.picker-filter-btn:hover,.picker-filter-btn.active{background:var(--gold-dim);border-color:var(--border2);color:var(--gold)}
-.picker-list{flex:1;overflow-y:auto;padding:8px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.picker-filter-btn:hover,.picker-filter-btn.active{background:var(--gold-dim);border-color:var(--border2);color:var(--gold2)}
+.picker-list{flex:1;overflow-y:auto;padding:8px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
 .picker-item{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:12px;cursor:pointer;transition:all 0.15s ease;border:1px solid transparent}
 .picker-item:hover{background:rgba(201,168,76,0.06);border-color:var(--border)}
 .picker-item-emoji{font-size:28px;flex-shrink:0}
 .picker-item-info{flex:1;min-width:0}
-.picker-item-name{font-family:'Cinzel',serif;font-size:13px;color:var(--text);margin-bottom:2px}
+.picker-item-name{font-family:'Cinzel',serif;font-size:13px;color:var(--text-bright);margin-bottom:2px}
 .picker-item-meta{font-size:12px;color:var(--muted);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.picker-item-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:99px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);flex-shrink:0}
+.picker-item-badge{font-family:'DM Mono',monospace;font-size:9px;padding:3px 9px;border-radius:99px;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold2);flex-shrink:0}
 .picker-empty{text-align:center;padding:40px;color:var(--muted);font-style:italic}
-.picker-close{position:absolute;top:16px;right:20px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);border-radius:99px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all 0.2s}
-.picker-close:hover{color:var(--text);border-color:var(--border2)}
-/* Manual reading section */
-.manual-reading{max-width:680px;margin:24px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;backdrop-filter:blur(12px);display:none}
-.manual-reading.visible{display:block;animation:fadeUp 0.6s ease forwards}
-.interpret-btn{display:block;margin:16px auto 0;padding:12px 36px;font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.12em;color:var(--gold);background:var(--gold-dim);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:all 0.3s ease}
-.interpret-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.15)}
-.interpret-btn:disabled{opacity:0.4;cursor:default;transform:none}
-.manual-clear-btn{display:block;margin:12px auto 0;padding:8px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:99px;cursor:pointer;transition:all 0.2s}
-.manual-clear-btn:hover{color:#f87171;border-color:rgba(248,113,113,0.3)}
+.picker-close{position:absolute;top:16px;right:20px;background:rgba(255,255,255,0.06);border:1px solid var(--border2);color:var(--muted);border-radius:99px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all 0.2s;z-index:10}
+.picker-close:hover{color:var(--text-bright);border-color:var(--gold)}
+
+/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes cardReveal{0%{transform:rotateY(90deg) scale(0.8);opacity:0}100%{transform:rotateY(0deg) scale(1);opacity:1}}
 .card-animate{animation:cardReveal 0.5s ease forwards}
@@ -205,7 +221,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
     </div>
   </div>
 
-  <!-- MI TIRADA MANUAL -->
+  <!-- MI TIRADA -->
   <div class="view" id="view-manual">
     <div class="tirada-hero">
       <p class="tirada-eyebrow">✦ Tirada Física</p>
@@ -226,8 +242,8 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
   <!-- EL MAZO -->
   <div class="view" id="view-mazo">
     <div style="margin-bottom:32px">
-      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:8px">El Mazo Completo</p>
-      <h2 style="font-family:'Cinzel',serif;font-size:clamp(24px,4vw,40px);font-weight:400">Solar Kingdom Tarot</h2>
+      <p style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:8px">El Mazo Completo</p>
+      <h2 style="font-family:'Cinzel',serif;font-size:clamp(24px,4vw,40px);font-weight:400;color:var(--text-bright)">Solar Kingdom Tarot</h2>
     </div>
     <div class="search-area">
       <input class="search-input" id="search-input" placeholder="Buscar carta por nombre, keyword, elemento..." oninput="filterCards()"/>
@@ -242,7 +258,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
   </div>
 </div>
 
-<!-- CARD DETAIL MODAL -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" style="position:relative">
     <button class="modal-close" onclick="closeModalDirect()">✕</button>
@@ -251,7 +267,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
   </div>
 </div>
 
-<!-- CARD PICKER -->
+<!-- PICKER -->
 <div class="card-picker-overlay" id="picker-overlay" onclick="closePicker(event)">
   <div class="card-picker" style="position:relative">
     <button class="picker-close" onclick="closePickerDirect()">✕</button>
@@ -271,39 +287,37 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 
 <script>
 const YN_COLOR={Yes:'yes',No:'no',Neutral:'neutral'};
-let allCards=[];
-let filteredCards=[];
-let currentFilter='all';
-let drawnCards=[null,null,null];
-let cardsLoaded=false;
-
-// Manual spread state
+let allCards=[];let filteredCards=[];let currentFilter='all';
+let drawnCards=[null,null,null];let cardsLoaded=false;
 let manualSlots=[{card:null},{card:null},{card:null}];
-let activePickerSlot=null;
-let pickerFilter='all';
+let activePickerSlot=null;let pickerFilter='all';
 
 function getCardSymbol(c){
   const n=c['Card Name']||'',s=c['Suit']||'',a=c['Arcana']||'';
-  const m={'The Fool':'🌟','The Magician':'🪄','The High Priestess':'🌙','The Empress':'🌸','The Emperor':'⚔️','The Hierophant':'📿','The Lovers':'💞','The Chariot':'🏆','Strength':'🦁','The Hermit':'🔦','Wheel of Fortune':'🎡','Justice':'⚖️','The Hanged Man':'🌀','Death':'🦋','Temperance':'🌈','The Devil':'🔗','The Tower':'⚡','The Star':'⭐','The Moon':'🌕','The Sun':'☀️','Judgement':'📯','The World':'🌍','The Setting Sun':'🌅','The Midnight Sun':'🌌','Solar Eclipse':'🌑','The Equinox':'⚖️'};
+  const m={'The Fool':'🌟','The Magician':'🪄','The High Priestess':'🌙','The Empress':'🌸','The Emperor':'⚔️','The Hierophant':'📿','The Lovers':'💞','The Chariot':'🏆','Strength':'🦁','The Hermit':'🔦','Wheel of Fortune':'🎡','Justice':'⚖️','The Hanged Man':'🌀','Death':'🦋','Temperance':'🌈','The Devil':'🔗','The Tower':'⚡','The Star':'⭐','The Moon':'🌕','The Sun':'☀️','Judgement':'📯','The World':'🌍','The Setting Sun':'🌅','The Midnight Sun':'🌌','Solar Eclipse':'🌑','The Equinox':'⚖️','The Rising Sun':'🌅','First Quarter Moon':'🌓','Full Moon':'🌕','Lunar Eclipse':'🌘','Last Quarter Moon':'🌗','New Moon':'🌑'};
   if(m[n])return m[n];
   if(s==='Wands')return'🔥';if(s==='Cups')return'🌊';if(s==='Swords')return'⚡';if(s==='Pentacles')return'🌿';
   if(a==='Special Card')return'✨';return'☀️';
 }
 
-// FETCH CARDS
+/* ═══ FETCH FROM NOTION VIA CLAUDE API ═══ */
 async function fetchAllCards(){
-  const prompt=`You have access to a Notion database called "Solar Kingdom Tarot" (collection ID: 98d2467b-cf23-4dc3-8cec-b9462499d702) that contains 86 tarot cards.\nReturn ALL cards as a JSON array. Each card: "Card Name","Card Number","Arcana","Suit","Element","Core Theme","Brief Description","Keywords Upright","Keywords Reversed","Numerology","Astrology","Affirmation","Yes / No","Emotional Meaning","Career Meaning","Spiritual Layer","Psychological Shadow","Symbolism Notes","Energy Type" (array),"Personal Meaning","Color Palette".\nReturn ONLY valid JSON array. No markdown, no backticks.`;
+  // Try loading from cards.json (for Vercel deploy)
   try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:16000,system:"You are a data retrieval assistant. Return only valid JSON arrays with no extra text.",messages:[{role:"user",content:prompt}],mcp_servers:[{type:"url",url:"https://mcp.notion.com/mcp",name:"notion-mcp"}]})});
-    const d=await r.json();const tb=d.content?.find(b=>b.type==='text');if(!tb)throw new Error('No text');
-    let t=tb.text.trim().replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
-    const cards=JSON.parse(t);if(!Array.isArray(cards))throw new Error('Not array');return cards;
-  }catch(e){console.error('API fetch error:',e);return null;}
+    const r=await fetch('/cards.json');
+    if(!r.ok)throw new Error('No cards.json');
+    const cards=await r.json();
+    if(!Array.isArray(cards)||cards.length===0)throw new Error('Empty');
+    cards.forEach(c=>{
+      if(typeof c['Energy Type']==='string'){try{c['Energy Type']=JSON.parse(c['Energy Type']);}catch(e){c['Energy Type']=c['Energy Type'].split(',').map(s=>s.trim());}}
+      if(!Array.isArray(c['Energy Type']))c['Energy Type']=[];
+    });
+    return cards.filter(c=>c['Card Name']);
+  }catch(e){console.log('cards.json not found, using fallback');return null;}
 }
 
 async function init(){
-  updateDateDisplay();
-  renderManualSpread();
+  updateDateDisplay();renderManualSpread();
   const cards=await fetchAllCards();
   if(cards&&cards.length>0){allCards=cards;cardsLoaded=true;document.getElementById('tirada-phase').textContent=`${cards.length} cartas listas para la tirada`;renderMazo(cards);}
   else{document.getElementById('tirada-phase').textContent='El mazo aguarda...';useFallbackCards();}
@@ -311,35 +325,22 @@ async function init(){
 
 function useFallbackCards(){
   allCards=[
-    {"Card Name":"The Fool","Card Number":"0","Arcana":"Major Arcana","Suit":"Major","Element":"Spirit","Core Theme":"New beginnings, infinite potential, leap of faith","Brief Description":"The Fool stands at the edge of a solar cliff, ready to leap into the unknown with nothing but trust in the universe.","Keywords Upright":"Beginnings, freedom, spontaneity, adventure, innocence, trust, potential","Keywords Reversed":"Recklessness, naivety, carelessness, missed opportunities","Numerology":"0 — The void before creation. Infinite potential.","Astrology":"Uranus — spontaneity, freedom, the unexpected leap.","Affirmation":"I trust the universe and leap forward with joy and courage.","Yes / No":"Yes","Emotional Meaning":"Openness to love without past baggage. Embrace vulnerability with childlike wonder.","Career Meaning":"A bold new venture or career leap. The perfect time to take risks.","Spiritual Layer":"The soul before its earthly journey — pure, formless, and full of divine possibility.","Psychological Shadow":"Fear of starting over; avoidance of responsibility.","Symbolism Notes":"White rose (purity), small bag (all he needs), cliff edge (leap of faith), sun (divine light).","Energy Type":["Fire","Spirit","Solar"],"Personal Meaning":"","Color Palette":"White, gold, sky blue, pale yellow"},
-    {"Card Name":"The Magician","Card Number":"I","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Will, manifestation, mastery of all elements","Brief Description":"The Magician channels solar energy through all four elements simultaneously, turning vision into reality.","Keywords Upright":"Willpower, manifestation, skill, resourcefulness, power","Keywords Reversed":"Manipulation, poor planning, untapped talents","Numerology":"1 — The first number, the act of will.","Astrology":"Mercury — communication, skill, the bridge between worlds.","Affirmation":"I have everything I need to create the life I desire.","Yes / No":"Yes","Emotional Meaning":"Confidence in your emotional power to attract and create.","Career Meaning":"You have all tools needed — act with intention and confidence.","Spiritual Layer":"The conduit between the divine and material realms.","Psychological Shadow":"Manipulation; using skills to deceive rather than create.","Symbolism Notes":"Table with four suit symbols, infinity sign, wand raised to sky.","Energy Type":["Solar","Fire"],"Personal Meaning":"","Color Palette":"Red, white, gold, green"},
-    {"Card Name":"The High Priestess","Card Number":"II","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Intuition, mystery, inner knowing, the unconscious","Brief Description":"She sits between two pillars, holding the scroll of all mysteries.","Keywords Upright":"Intuition, sacred knowledge, divine feminine, subconscious mind","Keywords Reversed":"Secrets, disconnected from intuition, withdrawal","Numerology":"2 — Duality, mystery, the space between.","Astrology":"Moon — intuition, cycles, the unconscious feminine.","Affirmation":"I trust my inner knowing. The answers live within me.","Yes / No":"Neutral","Emotional Meaning":"Deep emotional wisdom. Trust your gut over logic.","Career Meaning":"Study, research, and inner reflection are needed before acting.","Spiritual Layer":"The guardian of mysteries. What you seek is within.","Psychological Shadow":"Secrets and withdrawal; hiding rather than trusting.","Symbolism Notes":"Two pillars (B and J), pomegranates, crescent moon at feet.","Energy Type":["Lunar","Water"],"Personal Meaning":"","Color Palette":"Blue, silver, white, deep indigo"},
-    {"Card Name":"The Empress","Card Number":"III","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Abundance, nurturing, creation, fertility","Brief Description":"The Mother of all creation — she grows what the Magician plants.","Keywords Upright":"Fertility, beauty, nature, abundance, nurturing","Keywords Reversed":"Creative block, dependence on others, emptiness","Numerology":"3 — Creation, expression, the fruit of union.","Astrology":"Venus — love, beauty, sensual pleasure.","Affirmation":"I am abundant and nourished by the universe.","Yes / No":"Yes","Emotional Meaning":"Deep nurturing love. Embrace sensuality and self-care.","Career Meaning":"Creative projects will flourish. Nurture your ideas.","Spiritual Layer":"The divine feminine made manifest in nature.","Psychological Shadow":"Smothering love; using nurture as control.","Symbolism Notes":"Crown of stars, wheat field, waterfall, Venus symbol.","Energy Type":["Earth","Water"],"Personal Meaning":"","Color Palette":"Green, gold, cream, rose"},
-    {"Card Name":"The Emperor","Card Number":"IV","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Authority, structure, stability, leadership","Brief Description":"The Father archetype — discipline and structure meet power and protection.","Keywords Upright":"Authority, structure, control, fatherhood, leadership","Keywords Reversed":"Tyranny, rigidity, lack of discipline","Numerology":"4 — Stability, foundation, the four corners.","Astrology":"Aries — bold leadership, initiative, the pioneer.","Affirmation":"I build strong foundations with wisdom and authority.","Yes / No":"Yes","Emotional Meaning":"Stability in love. Setting healthy boundaries.","Career Meaning":"Leadership opportunity. Structure your vision with discipline.","Spiritual Layer":"The divine masculine: order from chaos.","Psychological Shadow":"Authoritarian control; inability to yield.","Symbolism Notes":"Stone throne, ram heads (Aries), red robes, orb and ankh.","Energy Type":["Fire","Solar"],"Personal Meaning":"","Color Palette":"Red, gold, grey stone, orange"},
-    {"Card Name":"The Hierophant","Card Number":"V","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Tradition, spiritual wisdom, conformity, mentorship","Brief Description":"The bridge between heaven and earth — the teacher who points to the door.","Keywords Upright":"Spiritual wisdom, tradition, conformity, education, mentorship","Keywords Reversed":"Personal beliefs, freedom, challenging the status quo","Numerology":"5 — The midpoint, change within structure.","Astrology":"Taurus — grounding, tradition, patience.","Affirmation":"I honor tradition while listening to my inner teacher.","Yes / No":"Neutral","Emotional Meaning":"Commitment, shared values, traditional relationship.","Career Meaning":"Mentorship, learning, working within established systems.","Spiritual Layer":"The outer teacher who awakens the inner one.","Psychological Shadow":"Dogma; blind obedience to authority.","Symbolism Notes":"Triple crown, two acolytes, crossed keys, religious vestments.","Energy Type":["Earth","Spirit"],"Personal Meaning":"","Color Palette":"Red, gold, grey, white"},
-    {"Card Name":"The Lovers","Card Number":"VI","Arcana":"Major Arcana","Suit":"Major","Element":"Air","Core Theme":"Love, choices, union, values alignment","Brief Description":"The choice that defines everything — where two paths meet and the heart decides.","Keywords Upright":"Love, harmony, relationships, values alignment, choices","Keywords Reversed":"Disharmony, imbalance, misalignment of values","Numerology":"6 — Harmony, balance, the choice between paths.","Astrology":"Gemini — duality, communication, the twin flame.","Affirmation":"I choose love and alignment in everything I do.","Yes / No":"Yes","Emotional Meaning":"Deep, soulful connection. Choose with your whole heart.","Career Meaning":"A crucial choice. Align your career with your values.","Spiritual Layer":"The sacred union of opposites within the self.","Psychological Shadow":"Indecision; projecting the shadow onto the partner.","Symbolism Notes":"Angel Raphael above, naked figures (vulnerability), tree of knowledge, mountain.","Energy Type":["Air","Light"],"Personal Meaning":"","Color Palette":"Blue, green, flesh tones, golden light"},
-    {"Card Name":"The Chariot","Card Number":"VII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Willpower, victory, determination, forward movement","Brief Description":"Victory through willpower and discipline — the warrior who conquers the inner battle.","Keywords Upright":"Control, willpower, success, action, determination","Keywords Reversed":"Lack of control, aggression, obstacles","Numerology":"7 — Spiritual victory through inner mastery.","Astrology":"Cancer — emotional armor, protective strength.","Affirmation":"I move forward with courage and clarity.","Yes / No":"Yes","Emotional Meaning":"Emotional mastery. Channel feelings into forward motion.","Career Meaning":"Victory is coming. Stay disciplined and push forward.","Spiritual Layer":"The soul's vehicle — directed will in action.","Psychological Shadow":"Controlling emotions through suppression rather than integration.","Symbolism Notes":"Black and white sphinxes (opposites), starry canopy, armor, river behind.","Energy Type":["Water","Solar"],"Personal Meaning":"","Color Palette":"Blue, gold, silver, black and white"},
-    {"Card Name":"Strength","Card Number":"VIII","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Inner strength, courage, patience, compassion","Brief Description":"True strength is not force — it is the quiet courage of compassion taming the beast within.","Keywords Upright":"Courage, patience, control, compassion, inner strength","Keywords Reversed":"Self-doubt, weakness, insecurity","Numerology":"8 — Infinity, karmic strength, endurance.","Astrology":"Leo — courage, pride, the heart's fire.","Affirmation":"My gentle strength can tame any storm within me.","Yes / No":"Yes","Emotional Meaning":"Patience and compassion in love. Tame anger with kindness.","Career Meaning":"Persistence and grace will win. Lead with empathy.","Spiritual Layer":"The mastery of the animal self through love, not force.","Psychological Shadow":"Repression of instincts; false gentleness masking rage.","Symbolism Notes":"Woman and lion, infinity above head, white robes, garland of flowers.","Energy Type":["Fire","Light"],"Personal Meaning":"","Color Palette":"Gold, white, green, warm red"},
-    {"Card Name":"The Hermit","Card Number":"IX","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Introspection, solitude, inner guidance","Brief Description":"The inner sage — the light within that illuminates the path when all outer lights go dark.","Keywords Upright":"Soul-searching, introspection, being alone, inner guidance","Keywords Reversed":"Isolation, loneliness, withdrawal from the world","Numerology":"9 — Completion of a cycle, wisdom earned.","Astrology":"Virgo — precision, analysis, service.","Affirmation":"I trust the light within me to guide my way.","Yes / No":"Neutral","Emotional Meaning":"It's okay to need solitude to process deep feelings.","Career Meaning":"Slow down and reflect.","Spiritual Layer":"The lantern-bearer. Wisdom comes from going within.","Psychological Shadow":"Isolation as avoidance; refusing connection.","Symbolism Notes":"Lantern (inner light), staff (grounded wisdom), mountain.","Energy Type":["Earth","Shadow"],"Personal Meaning":"","Color Palette":"Grey, white, gold lantern"},
-    {"Card Name":"Wheel of Fortune","Card Number":"X","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Cycles, destiny, turning point, luck","Brief Description":"The great wheel turns — what was up goes down, what was down rises.","Keywords Upright":"Good luck, karma, life cycles, destiny, a turning point","Keywords Reversed":"Bad luck, resistance to change, breaking cycles","Numerology":"10 — Completion and new beginning.","Astrology":"Jupiter — expansion, fortune, wisdom.","Affirmation":"I flow with the cycles of life knowing everything turns.","Yes / No":"Yes","Emotional Meaning":"A shift is coming. Trust the cycle.","Career Meaning":"Fortune is turning in your favor.","Spiritual Layer":"The karma wheel — what you give returns.","Psychological Shadow":"Fatalism; using destiny as an excuse.","Symbolism Notes":"Four fixed signs in corners, sphinx, snake, Anubis.","Energy Type":["Fire","Spirit"],"Personal Meaning":"","Color Palette":"Blue, orange, gold, multicolor"},
-    {"Card Name":"Justice","Card Number":"XI","Arcana":"Major Arcana","Suit":"Major","Element":"Air","Core Theme":"Fairness, truth, law, cause and effect","Brief Description":"Truth with a blade — what you put out returns to you with precision.","Keywords Upright":"Justice, fairness, truth, cause and effect, law","Keywords Reversed":"Unfairness, dishonesty, lack of accountability","Numerology":"11 — Master number, divine justice.","Astrology":"Libra — balance, harmony, truth.","Affirmation":"I stand in truth and accept the consequences of my actions.","Yes / No":"Neutral","Emotional Meaning":"Be honest about your feelings and relationships.","Career Meaning":"Fair outcomes are coming. Act with integrity.","Spiritual Layer":"Cosmic justice — the universe balances all scales.","Psychological Shadow":"Self-righteousness; using fairness as a weapon.","Symbolism Notes":"Scales, double-edged sword, crown, purple veil.","Energy Type":["Air","Light"],"Personal Meaning":"","Color Palette":"Red, gold, purple, grey"},
-    {"Card Name":"The Hanged Man","Card Number":"XII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Surrender, new perspective, letting go, pause","Brief Description":"Suspension — the willingness to see everything upside down to find the truth.","Keywords Upright":"Pause, surrender, letting go, new perspectives","Keywords Reversed":"Delays, resistance, stalling, indecision","Numerology":"12 — The reversal, seeing from above.","Astrology":"Neptune — surrender, illusion, the spiritual.","Affirmation":"I surrender to gain a new perspective.","Yes / No":"Neutral","Emotional Meaning":"Let go of control. New perspective changes everything.","Career Meaning":"Pause before acting. A different angle is needed.","Spiritual Layer":"Odin on the tree — sacrifice for wisdom.","Psychological Shadow":"Martyrdom; using sacrifice for attention.","Symbolism Notes":"Inverted figure, halo of light, crossed leg forming 4.","Energy Type":["Water","Shadow"],"Personal Meaning":"","Color Palette":"Blue, gold halo, green, grey"},
-    {"Card Name":"Death","Card Number":"XIII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Endings, transformation, transition, letting go","Brief Description":"Not the end — the transformation. The butterfly does not mourn the caterpillar.","Keywords Upright":"Endings, change, transformation, transition","Keywords Reversed":"Resistance to change, personal transformation, inner purging","Numerology":"13 — Transformation, the death of the old.","Astrology":"Scorpio — death and rebirth, deep transformation.","Affirmation":"I release what no longer serves me and welcome transformation.","Yes / No":"No","Emotional Meaning":"Let the old die so new love can be born.","Career Meaning":"A major ending is clearing space for something better.","Spiritual Layer":"The ego's death — the soul's liberation.","Psychological Shadow":"Clinging to what must die; fear of change.","Symbolism Notes":"Skeleton knight, white rose (purity in death), rising sun, river.","Energy Type":["Water","Shadow"],"Personal Meaning":"","Color Palette":"Black, white, pale gold, deep blue"},
-    {"Card Name":"Temperance","Card Number":"XIV","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Balance, moderation, patience, alchemy","Brief Description":"The angel of balance — pouring light between the worlds with infinite patience.","Keywords Upright":"Balance, moderation, patience, purpose, harmony","Keywords Reversed":"Imbalance, excess, self-healing, realignment","Numerology":"14 — Integration, the alchemy of balance.","Astrology":"Sagittarius — higher truth, expansion with purpose.","Affirmation":"I find my center and flow with divine timing.","Yes / No":"Yes","Emotional Meaning":"Emotional balance. Patience in love.","Career Meaning":"Find the middle path. Patience will bring results.","Spiritual Layer":"The alchemist — combining opposites into gold.","Psychological Shadow":"Avoiding extremes to the point of avoiding life.","Symbolism Notes":"Angel pouring water between cups, one foot on land/one in water, sun on horizon.","Energy Type":["Fire","Light","Spirit"],"Personal Meaning":"","Color Palette":"Gold, white, blue, soft orange"},
-    {"Card Name":"The Devil","Card Number":"XV","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Bondage, addiction, materialism, shadow self","Brief Description":"The shadow of The Lovers. Where choice was conscious, here binding is unconscious.","Keywords Upright":"Shadow self, attachment, addiction, restriction, materialism","Keywords Reversed":"Releasing limiting beliefs, exploring dark thoughts, detachment","Numerology":"15 — Shadow of 6 (The Lovers).","Astrology":"Capricorn — structure, ambition, earthly power.","Affirmation":"I release what no longer serves me. I am free.","Yes / No":"No","Emotional Meaning":"Toxic attachments masquerading as love or comfort.","Career Meaning":"Trapped by golden handcuffs. Question what holds you.","Spiritual Layer":"The invitation to face your shadow and reclaim your power.","Psychological Shadow":"Projection of inner shadow onto others.","Symbolism Notes":"Chained figures (but chains are loose — choice), inverted pentagram, bat wings.","Energy Type":["Shadow","Earth"],"Personal Meaning":"","Color Palette":"Black, deep red, dark brown, gold chains"},
-    {"Card Name":"The Tower","Card Number":"XVI","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Sudden upheaval, destruction, revelation, liberation","Brief Description":"Lightning strikes what was built on false foundations — destruction is liberation.","Keywords Upright":"Sudden change, upheaval, chaos, revelation, awakening","Keywords Reversed":"Personal transformation, fear of change, averting disaster","Numerology":"16 — The shattering of the ego structure.","Astrology":"Mars — sudden force, aggression, breakthrough.","Affirmation":"I welcome truth even when it breaks my illusions.","Yes / No":"No","Emotional Meaning":"A shocking revelation that ultimately frees you.","Career Meaning":"Sudden disruption. The old must fall for the new.","Spiritual Layer":"The ego's fortress destroyed by divine lightning.","Psychological Shadow":"Building higher walls after each fall.","Symbolism Notes":"Lightning-struck tower, falling figures, crown blown off, flames.","Energy Type":["Fire","Shadow"],"Personal Meaning":"","Color Palette":"Dark grey, red fire, yellow lightning, black sky"},
-    {"Card Name":"The Star","Card Number":"XVII","Arcana":"Major Arcana","Suit":"Major","Element":"Air","Core Theme":"Hope, renewal, divine guidance, serenity","Brief Description":"After The Tower's destruction comes The Star — hope renewed, trust in the universe restored.","Keywords Upright":"Hope, faith, purpose, renewal, spirituality","Keywords Reversed":"Lack of faith, despair, self-trust issues","Numerology":"17 — Reduction to 8 (Strength). Hope that endures.","Astrology":"Aquarius — humanitarian vision, future-thinking.","Affirmation":"I am guided, held, and deeply loved by the universe.","Yes / No":"Yes","Emotional Meaning":"A return to hope after heartbreak. You are healing.","Career Meaning":"Inspired work aligned with your higher purpose awaits.","Spiritual Layer":"Direct connection to divine guidance. You are never lost.","Psychological Shadow":"Naive idealism; escaping reality through wishful thinking.","Symbolism Notes":"Eight stars, woman pouring water, ibis.","Energy Type":["Air","Light","Divine"],"Personal Meaning":"","Color Palette":"Deep blue, silver, gold, pale aqua"},
-    {"Card Name":"The Moon","Card Number":"XVIII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Illusion, fear, the unconscious, confusion","Brief Description":"The shadow of 9. Where the Hermit holds the lantern high, the Moon is the fear that extinguishes it.","Keywords Upright":"Illusion, fear, the unconscious, confusion, intuition","Keywords Reversed":"Release of fear, repressed emotion, inner confusion","Numerology":"18 — Shadow of 9. Fear meeting wisdom.","Astrology":"Pisces — dreams, illusion, the dissolving of boundaries.","Affirmation":"I walk through uncertainty with trust in my inner compass.","Yes / No":"No","Emotional Meaning":"Deep fears and anxieties rising to be faced.","Career Meaning":"Things are not as they seem. Wait for clarity.","Spiritual Layer":"The path through the shadow. Face what hides in the dark.","Psychological Shadow":"Paranoia, delusion, refusal to face inner fears.","Symbolism Notes":"Moon with face, crayfish, two towers.","Energy Type":["Lunar","Shadow","Water"],"Personal Meaning":"","Color Palette":"Deep blue, silver, pale yellow, shadow grey"},
-    {"Card Name":"The Sun","Card Number":"XIX","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Joy, vitality, success, clarity, radiant energy","Brief Description":"The ultimate solar card — pure joy, success, and the warmth of alignment with your true self.","Keywords Upright":"Positivity, fun, warmth, success, vitality, clarity","Keywords Reversed":"Inner child, feeling down, overly optimistic","Numerology":"19 — Reduction to 10, then 1. New beginnings through wholeness.","Astrology":"The Sun — self, vitality, conscious identity.","Affirmation":"I radiate joy and shine my authentic light into the world.","Yes / No":"Yes","Emotional Meaning":"Pure emotional joy. Childlike delight in being alive.","Career Meaning":"Success, recognition, and fulfillment in your work.","Spiritual Layer":"Union with the divine light within. You ARE the light.","Psychological Shadow":"Ego inflation; confusing the persona with the true Self.","Symbolism Notes":"Radiant sun, child on white horse, sunflowers, red banner.","Energy Type":["Solar","Fire","Light"],"Personal Meaning":"","Color Palette":"Bright gold, yellow, orange, white, red"},
-    {"Card Name":"Judgement","Card Number":"XX","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Rebirth, inner calling, absolution, self-evaluation","Brief Description":"The trumpet sounds — rise from the past and answer your true calling.","Keywords Upright":"Judgement, rebirth, inner calling, absolution","Keywords Reversed":"Self-doubt, inner critic, ignoring the call","Numerology":"20 — The final awakening before completion.","Astrology":"Pluto — deep transformation, rebirth from the underworld.","Affirmation":"I answer my highest calling and rise renewed.","Yes / No":"Yes","Emotional Meaning":"Emotional reckoning. Forgive yourself and rise.","Career Meaning":"A calling is emerging. It's time to answer.","Spiritual Layer":"The soul's final evaluation before transcendence.","Psychological Shadow":"Harsh self-judgment; inability to forgive.","Symbolism Notes":"Angel Gabriel, trumpet, rising figures, mountains.","Energy Type":["Fire","Divine"],"Personal Meaning":"","Color Palette":"Gold, blue, white, red, grey"},
-    {"Card Name":"The World","Card Number":"XXI","Arcana":"Major Arcana","Suit":"Major","Element":"Spirit","Core Theme":"Completion, integration, wholeness, the grand cycle","Brief Description":"The final card of the Major Arcana. You have arrived. The journey is complete — and beginning again.","Keywords Upright":"Completion, integration, accomplishment, travel, the end","Keywords Reversed":"Seeking personal closure, short-cuts, delays","Numerology":"21 — Reduction to 3. The trinity of completion.","Astrology":"Saturn — structure, completion, lessons integrated.","Affirmation":"I am whole, complete, and ready for the next adventure.","Yes / No":"Yes","Emotional Meaning":"Emotional wholeness and integration. You have grown.","Career Meaning":"A major achievement. Celebrate before the next chapter.","Spiritual Layer":"The completion of the soul's lesson in this cycle.","Psychological Shadow":"Fear of completion; staying in familiar loops.","Symbolism Notes":"Dancer in wreath, four figures at corners, two wands.","Energy Type":["Spirit","Solar","Divine"],"Personal Meaning":"","Color Palette":"Purple, gold, deep blue, green"},
-    {"Card Name":"The Setting Sun","Card Number":"S·I","Arcana":"Special Card","Suit":"Special","Element":"Fire","Core Theme":"Transitions, the beauty of endings, the Descendant","Brief Description":"Sun setting — the Descendant. The relationship axis, the self meeting the other at day's end.","Keywords Upright":"Transitions, relationships, endings as beauty, meeting the other","Keywords Reversed":"Resistance to change, clinging to what is ending","Numerology":"Special — the transition point between day and night.","Astrology":"Libra / Descendant — the relationship axis.","Affirmation":"I embrace every ending as a gateway to something new.","Yes / No":"Neutral","Emotional Meaning":"The beauty of letting relationships evolve and change.","Career Meaning":"A chapter is closing. Honor it, then let it go.","Spiritual Layer":"The sacred beauty in all things that end.","Psychological Shadow":"Fear of abandonment disguised as control.","Symbolism Notes":"Setting sun painting the sky gold and rose.","Energy Type":["Solar","Fire","Divine"],"Personal Meaning":"","Color Palette":"Rose gold, amber, deep orange, twilight purple"},
-    {"Card Name":"The Midnight Sun","Card Number":"S·II","Arcana":"Special Card","Suit":"Special","Element":"Spirit","Core Theme":"Hidden illumination, the IC, ancestral roots","Brief Description":"The sun at midnight — the light that shines in your deepest roots.","Keywords Upright":"Ancestral wisdom, hidden truths, inner foundation","Keywords Reversed":"Disconnection from roots, ignoring the subconscious","Numerology":"Special — the nadir, the lowest point of the chart.","Astrology":"IC / Cancer — home, roots, ancestral memory.","Affirmation":"My roots hold wisdom and light even in the darkness.","Yes / No":"Neutral","Emotional Meaning":"Deep ancestral emotions surfacing for healing.","Career Meaning":"Your foundation needs attention before you can grow.","Spiritual Layer":"The light hidden in your lineage.","Psychological Shadow":"Running from your origins.","Symbolism Notes":"Sun below the horizon, roots illuminated, starless sky above.","Energy Type":["Shadow","Spirit","Lunar"],"Personal Meaning":"","Color Palette":"Deep indigo, midnight blue, subtle gold, black"},
-    {"Card Name":"Solar Eclipse","Card Number":"S·III","Arcana":"Special Card","Suit":"Special","Element":"Multiple","Core Theme":"Transformation through shadow, ego death, reset","Brief Description":"When the moon covers the sun — the ultimate moment of shadow meeting light.","Keywords Upright":"Profound transformation, ego death, cosmic reset","Keywords Reversed":"Fear of the unknown, avoiding transformation","Numerology":"Special — the zero-point, total reset.","Astrology":"North/South Node axis — karmic destiny.","Affirmation":"In my darkest moment, I find the seed of my brightest light.","Yes / No":"Neutral","Emotional Meaning":"A total emotional reset. Trust the darkness.","Career Meaning":"A radical shift. Everything you know changes.","Spiritual Layer":"The death and rebirth of the solar self.","Psychological Shadow":"Addiction to transformation; never allowing stability.","Symbolism Notes":"Eclipse corona, dark disk over sun, diamond ring effect.","Energy Type":["Shadow","Solar","Divine"],"Personal Meaning":"","Color Palette":"Black, silver corona, deep purple, flash of white"},
-    {"Card Name":"The Equinox","Card Number":"S·IV","Arcana":"Special Card","Suit":"Special","Element":"Air","Core Theme":"Perfect balance, the threshold, equal day and night","Brief Description":"The moment of perfect balance — where light and shadow hold equal power.","Keywords Upright":"Balance, threshold moments, equal forces, choice","Keywords Reversed":"Imbalance, indecision at a crossroads","Numerology":"Special — the balance point.","Astrology":"0° Aries / 0° Libra — the great threshold.","Affirmation":"I stand at the threshold in perfect balance.","Yes / No":"Neutral","Emotional Meaning":"A moment of perfect emotional equilibrium.","Career Meaning":"You stand at a threshold. Both paths hold power.","Spiritual Layer":"The cosmic balance — neither light nor dark dominates.","Psychological Shadow":"Paralysis at the crossroads.","Symbolism Notes":"Horizon line perfectly splitting light and dark, two pillars.","Energy Type":["Air","Light","Shadow"],"Personal Meaning":"","Color Palette":"Half gold / half deep blue, silver line, white"}
+    {"Card Name":"The Fool","Card Number":"0","Arcana":"Major Arcana","Suit":"Major","Element":"Spirit","Core Theme":"New beginnings, infinite potential, leap of faith","Brief Description":"The Fool stands at the edge of a solar cliff, ready to leap into the unknown.","Keywords Upright":"Beginnings, freedom, spontaneity, adventure, innocence, trust, potential","Keywords Reversed":"Recklessness, naivety, carelessness, missed opportunities","Numerology":"0 — The void before creation.","Astrology":"Uranus — spontaneity, freedom.","Affirmation":"I trust the universe and leap forward with joy and courage.","Yes / No":"Yes","Emotional Meaning":"Openness to love without past baggage.","Career Meaning":"A bold new venture or career leap.","Spiritual Layer":"The soul before its earthly journey.","Psychological Shadow":"Fear of starting over.","Symbolism Notes":"White rose, small bag, cliff edge, sun.","Energy Type":["Fire","Spirit","Solar"],"Personal Meaning":"","Color Palette":"White, gold, sky blue, pale yellow"},
+    {"Card Name":"The Magician","Card Number":"I","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Will, manifestation, mastery of all elements","Brief Description":"The Magician channels solar energy through all four elements.","Keywords Upright":"Willpower, manifestation, skill, resourcefulness, power","Keywords Reversed":"Manipulation, poor planning, untapped talents","Numerology":"1 — The act of will.","Astrology":"Mercury — communication, skill.","Affirmation":"I have everything I need to create the life I desire.","Yes / No":"Yes","Emotional Meaning":"Confidence in your emotional power.","Career Meaning":"You have all tools needed — act with intention.","Spiritual Layer":"The conduit between divine and material.","Psychological Shadow":"Manipulation; using skills to deceive.","Symbolism Notes":"Four suit symbols, infinity sign, wand raised.","Energy Type":["Solar","Fire"],"Personal Meaning":"","Color Palette":"Red, white, gold, green"},
+    {"Card Name":"The High Priestess","Card Number":"II","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Intuition, mystery, inner knowing","Brief Description":"She sits between two pillars, holding the scroll of mysteries.","Keywords Upright":"Intuition, sacred knowledge, divine feminine, subconscious","Keywords Reversed":"Secrets, disconnected from intuition","Numerology":"2 — Duality, mystery.","Astrology":"Moon — intuition, cycles.","Affirmation":"I trust my inner knowing.","Yes / No":"Neutral","Emotional Meaning":"Deep emotional wisdom.","Career Meaning":"Study and reflection needed before acting.","Spiritual Layer":"The guardian of mysteries.","Psychological Shadow":"Secrets and withdrawal.","Symbolism Notes":"Two pillars, pomegranates, crescent moon.","Energy Type":["Lunar","Water"],"Personal Meaning":"","Color Palette":"Blue, silver, white, deep indigo"},
+    {"Card Name":"The Empress","Card Number":"III","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Abundance, nurturing, creation, fertility","Brief Description":"The Mother of all creation.","Keywords Upright":"Fertility, beauty, nature, abundance, nurturing","Keywords Reversed":"Creative block, dependence, emptiness","Numerology":"3 — Creation, expression.","Astrology":"Venus — love, beauty.","Affirmation":"I am abundant and nourished by the universe.","Yes / No":"Yes","Emotional Meaning":"Deep nurturing love.","Career Meaning":"Creative projects will flourish.","Spiritual Layer":"The divine feminine manifest.","Psychological Shadow":"Smothering love as control.","Symbolism Notes":"Crown of stars, wheat field, waterfall.","Energy Type":["Earth","Water"],"Personal Meaning":"","Color Palette":"Green, gold, cream, rose"},
+    {"Card Name":"The Emperor","Card Number":"IV","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Authority, structure, stability, leadership","Brief Description":"The Father archetype — discipline meets power.","Keywords Upright":"Authority, structure, control, leadership","Keywords Reversed":"Tyranny, rigidity, lack of discipline","Numerology":"4 — Stability, foundation.","Astrology":"Aries — bold leadership.","Affirmation":"I build strong foundations with wisdom.","Yes / No":"Yes","Emotional Meaning":"Stability in love.","Career Meaning":"Leadership opportunity.","Spiritual Layer":"The divine masculine: order from chaos.","Psychological Shadow":"Authoritarian control.","Symbolism Notes":"Stone throne, ram heads, orb and ankh.","Energy Type":["Fire","Solar"],"Personal Meaning":"","Color Palette":"Red, gold, grey stone, orange"},
+    {"Card Name":"The Hermit","Card Number":"IX","Arcana":"Major Arcana","Suit":"Major","Element":"Earth","Core Theme":"Introspection, solitude, inner guidance","Brief Description":"The inner sage — the light within.","Keywords Upright":"Soul-searching, introspection, inner guidance","Keywords Reversed":"Isolation, loneliness, withdrawal","Numerology":"9 — Completion, wisdom earned.","Astrology":"Virgo — precision, analysis.","Affirmation":"I trust the light within me.","Yes / No":"Neutral","Emotional Meaning":"Solitude to process deep feelings.","Career Meaning":"Slow down and reflect.","Spiritual Layer":"Wisdom comes from going within.","Psychological Shadow":"Isolation as avoidance.","Symbolism Notes":"Lantern, staff, mountain.","Energy Type":["Earth","Shadow"],"Personal Meaning":"","Color Palette":"Grey, white, gold lantern"},
+    {"Card Name":"Death","Card Number":"XIII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Endings, transformation, transition","Brief Description":"Not the end — the transformation.","Keywords Upright":"Endings, change, transformation, transition","Keywords Reversed":"Resistance to change, stagnation","Numerology":"13 — Transformation.","Astrology":"Scorpio — death and rebirth.","Affirmation":"I release what no longer serves me.","Yes / No":"No","Emotional Meaning":"Let the old die so new love grows.","Career Meaning":"An old chapter ends.","Spiritual Layer":"The ego's death — soul's liberation.","Psychological Shadow":"Clinging to what must die.","Symbolism Notes":"Skeleton knight, white rose, rising sun.","Energy Type":["Water","Shadow"],"Personal Meaning":"","Color Palette":"Black, white, gold, deep blue"},
+    {"Card Name":"The Star","Card Number":"XVII","Arcana":"Major Arcana","Suit":"Major","Element":"Air","Core Theme":"Hope, renewal, divine guidance","Brief Description":"After The Tower comes hope renewed.","Keywords Upright":"Hope, faith, purpose, renewal","Keywords Reversed":"Lack of faith, despair","Numerology":"17 — Hope that endures.","Astrology":"Aquarius — humanitarian vision.","Affirmation":"I am guided and deeply loved by the universe.","Yes / No":"Yes","Emotional Meaning":"Return to hope after heartbreak.","Career Meaning":"Inspired work aligned with purpose.","Spiritual Layer":"Direct connection to divine guidance.","Psychological Shadow":"Naive idealism.","Symbolism Notes":"Eight stars, woman pouring water.","Energy Type":["Air","Light","Divine"],"Personal Meaning":"","Color Palette":"Deep blue, silver, gold, pale aqua"},
+    {"Card Name":"The Moon","Card Number":"XVIII","Arcana":"Major Arcana","Suit":"Major","Element":"Water","Core Theme":"Illusion, fear, the unconscious","Brief Description":"The shadow of 9 — fear that extinguishes the lantern.","Keywords Upright":"Illusion, fear, confusion, intuition","Keywords Reversed":"Release of fear, repressed emotion","Numerology":"18 — Shadow of 9.","Astrology":"Pisces — dreams, illusion.","Affirmation":"I walk through uncertainty with trust.","Yes / No":"No","Emotional Meaning":"Deep fears rising to be faced.","Career Meaning":"Things are not as they seem.","Spiritual Layer":"Face what hides in the dark.","Psychological Shadow":"Paranoia, delusion.","Symbolism Notes":"Moon with face, crayfish, two towers.","Energy Type":["Lunar","Shadow","Water"],"Personal Meaning":"","Color Palette":"Deep blue, silver, pale yellow"},
+    {"Card Name":"The Sun","Card Number":"XIX","Arcana":"Major Arcana","Suit":"Major","Element":"Fire","Core Theme":"Joy, vitality, success, clarity","Brief Description":"The ultimate solar card — pure joy and alignment.","Keywords Upright":"Positivity, fun, warmth, success, vitality","Keywords Reversed":"Inner child, feeling down","Numerology":"19 — New beginnings through wholeness.","Astrology":"The Sun — self, vitality.","Affirmation":"I radiate joy and shine my authentic light.","Yes / No":"Yes","Emotional Meaning":"Pure emotional joy.","Career Meaning":"Success, recognition, fulfillment.","Spiritual Layer":"Union with divine light within.","Psychological Shadow":"Ego inflation.","Symbolism Notes":"Radiant sun, child on horse, sunflowers.","Energy Type":["Solar","Fire","Light"],"Personal Meaning":"","Color Palette":"Bright gold, yellow, orange, white"},
+    {"Card Name":"The World","Card Number":"XXI","Arcana":"Major Arcana","Suit":"Major","Element":"Spirit","Core Theme":"Completion, integration, wholeness","Brief Description":"The journey complete — and beginning again.","Keywords Upright":"Completion, integration, accomplishment","Keywords Reversed":"Seeking closure, delays","Numerology":"21 — Trinity of completion.","Astrology":"Saturn — completion, lessons integrated.","Affirmation":"I am whole, complete, and ready.","Yes / No":"Yes","Emotional Meaning":"Emotional wholeness and integration.","Career Meaning":"A major achievement.","Spiritual Layer":"Completion of the soul's lesson.","Psychological Shadow":"Fear of completion.","Symbolism Notes":"Dancer in wreath, four corner figures.","Energy Type":["Spirit","Solar","Divine"],"Personal Meaning":"","Color Palette":"Purple, gold, deep blue, green"},
+    {"Card Name":"The Setting Sun","Card Number":"S·I","Arcana":"Special Card","Suit":"Special","Element":"Fire","Core Theme":"Transitions, the beauty of endings","Brief Description":"The Descendant — the self meeting the other at day's end.","Keywords Upright":"Transitions, relationships, endings as beauty","Keywords Reversed":"Resistance to change, clinging","Numerology":"Special — transition between day and night.","Astrology":"Libra / Descendant.","Affirmation":"I embrace every ending as a gateway.","Yes / No":"Neutral","Emotional Meaning":"The beauty of letting relationships evolve.","Career Meaning":"A chapter is closing. Honor it.","Spiritual Layer":"The sacred beauty in endings.","Psychological Shadow":"Fear of abandonment as control.","Symbolism Notes":"Setting sun, gold and rose sky.","Energy Type":["Solar","Fire","Divine"],"Personal Meaning":"","Color Palette":"Rose gold, amber, deep orange, twilight purple"},
+    {"Card Name":"Solar Eclipse","Card Number":"S·III","Arcana":"Special Card","Suit":"Special","Element":"Multiple","Core Theme":"Transformation through shadow, ego death","Brief Description":"The ultimate moment of shadow meeting light.","Keywords Upright":"Profound transformation, ego death, cosmic reset","Keywords Reversed":"Fear of the unknown, avoiding transformation","Numerology":"Special — the zero-point.","Astrology":"North/South Node axis.","Affirmation":"In my darkest moment, I find my brightest light.","Yes / No":"Neutral","Emotional Meaning":"A total emotional reset.","Career Meaning":"A radical shift.","Spiritual Layer":"Death and rebirth of the solar self.","Psychological Shadow":"Addiction to transformation.","Symbolism Notes":"Eclipse corona, dark disk, diamond ring.","Energy Type":["Shadow","Solar","Divine"],"Personal Meaning":"Im friend with my darkness","Color Palette":"Black, silver corona, deep purple, flash of white"}
   ];
   cardsLoaded=true;
-  document.getElementById('tirada-phase').textContent=`${allCards.length} cartas cargadas`;
+  document.getElementById('tirada-phase').textContent=`${allCards.length} cartas cargadas (fallback)`;
   renderMazo(allCards);
 }
 
@@ -359,7 +360,7 @@ function switchView(name){
   if(name==='mazo'&&allCards.length>0)renderMazo(allCards);
 }
 
-// ═══ TIRADA DEL DÍA ═══
+/* ═══ TIRADA DEL DÍA ═══ */
 async function drawCards(){
   if(!cardsLoaded||allCards.length<3)return;
   const shuffled=[...allCards].sort(()=>Math.random()-0.5);
@@ -378,66 +379,53 @@ function revealCard(i,c){
 async function generateDailyReading(cards){
   const msgEl=document.getElementById('daily-msg'),textEl=document.getElementById('daily-msg-text');
   msgEl.classList.add('visible');textEl.innerHTML='<span style="opacity:0.5;font-style:italic;">Interpretando tu tirada...</span>';
-  const desc=cards.map((c,i)=>`${['Pasado','Presente','Futuro'][i]}: ${c['Card Name']} — ${c['Core Theme']}`).join('\n');
+  const desc=cards.map((c,i)=>{const pos=['Pasado','Presente','Futuro'][i];return`${pos}: ${c['Card Name']} (${c['Card Number']})\n  Tema: ${c['Core Theme']}\n  Emocional: ${c['Emotional Meaning']||'—'}\n  Carrera: ${c['Career Meaning']||'—'}\n  Espiritual: ${c['Spiritual Layer']||'—'}\n  Sombra: ${c['Psychological Shadow']||'—'}\n  Afirmación: ${c['Affirmation']||'—'}`;}).join('\n\n');
   try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:`Sos una lectora de tarot poética y perspicaz, especializada en el Solar Kingdom Tarot.\nLa usuaria tiró estas tres cartas hoy:\n${desc}\nEscribí un mensaje del día en español, unificando las tres cartas en una narrativa fluida de 3-4 oraciones. Usá un tono lírico, íntimo y directo. Mencioná las cartas de forma natural. Terminá con una pregunta o invitación reflexiva. Máximo 100 palabras. Respondé SOLO con el mensaje.`}]})});
+    const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,messages:[{role:"user",content:`Sos una lectora de tarot experta, poética y profunda del Solar Kingdom Tarot.\n\nLa usuaria tiró estas tres cartas hoy:\n\n${desc}\n\nEscribí una lectura del día en español rioplatense que cubra:\n- PASADO: Qué energía pasada está activa, cómo influye ahora. Sé específica con el significado de la carta.\n- PRESENTE: Profundizá en la carta central — qué está atravesando, qué le pide emocionalmente y en su camino. Usá el significado emocional y espiritual de la carta.\n- FUTURO: Qué se abre si sigue el mensaje. Qué promete esta carta concretamente.\n- CIERRE: Un mensaje que una las tres en una guía accionable.\n\nTono íntimo, directo, como hablándole a una amiga que conocés bien. Mencioná cada carta por nombre. Sé ESPECÍFICA con los significados reales de cada carta — no seas genérica ni superficial. Incluí la sombra si es relevante. Terminá con una pregunta reflexiva poderosa.\n\nEntre 150-200 palabras. No uses títulos, bullets ni numeración. Escribí en prosa fluida, un solo texto corrido.\nRespondé SOLO con la lectura.`}]})});
     const d=await r.json();textEl.textContent=d.content?.[0]?.text||'';
     const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
     if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
   }catch(e){textEl.textContent=`${cards[0]['Card Name']} te invita a mirar atrás. ${cards[1]['Card Name']} revela la energía de este momento — ${(cards[1]['Core Theme']||'').toLowerCase()}. Hacia adelante, ${cards[2]['Card Name']} ilumina el camino.`;}
 }
 
-// ═══ MI TIRADA MANUAL ═══
+/* ═══ MI TIRADA MANUAL ═══ */
 function renderManualSpread(){
-  const area=document.getElementById('manual-spread');
-  area.innerHTML='';
+  const area=document.getElementById('manual-spread');area.innerHTML='';
   manualSlots.forEach((slot,i)=>{
     const div=document.createElement('div');div.className='manual-slot';
     const numLabel=document.createElement('div');numLabel.className='manual-slot-num';numLabel.textContent=`Carta ${i+1}`;
     div.appendChild(numLabel);
     if(slot.card){
-      const card=document.createElement('div');card.className='tarot-card revealed';
-      card.style.cursor='pointer';
+      const card=document.createElement('div');card.className='tarot-card revealed';card.style.cursor='pointer';
       card.innerHTML=`<div class="card-inner card-animate"><div class="card-number-display">${slot.card['Card Number']||''}</div><div class="card-symbol">${getCardSymbol(slot.card)}</div><div class="card-name-display">${slot.card['Card Name']}</div><div class="card-keyword">${(slot.card['Keywords Upright']||'').split(',')[0].trim()}</div></div>`;
-      card.onclick=()=>openCardDetail(slot.card);
-      div.appendChild(card);
-      // Remove btn
+      card.onclick=()=>openCardDetail(slot.card);div.appendChild(card);
       const rmBtn=document.createElement('button');rmBtn.className='remove-slot-btn';rmBtn.textContent='✕';
       rmBtn.onclick=(e)=>{e.stopPropagation();manualSlots[i].card=null;renderManualSpread();updateManualUI();};
       div.appendChild(rmBtn);
     }else{
       const ph=document.createElement('div');ph.className='manual-card-placeholder';
       ph.innerHTML=`<span class="placeholder-icon">☀</span><span class="placeholder-text">Elegir carta</span>`;
-      ph.onclick=()=>openPicker(i);
-      div.appendChild(ph);
-    }
-    // Remove slot btn (only if >1 slots)
-    if(manualSlots.length>1&&!slot.card){
-      const rmSlot=document.createElement('button');rmSlot.className='remove-slot-btn';rmSlot.textContent='✕';
-      rmSlot.style.opacity='1';rmSlot.style.background='rgba(255,255,255,0.05)';rmSlot.style.borderColor='var(--border)';rmSlot.style.color='var(--muted)';
-      rmSlot.onclick=(e)=>{e.stopPropagation();manualSlots.splice(i,1);renderManualSpread();updateManualUI();};
-      div.appendChild(rmSlot);
+      ph.onclick=()=>openPicker(i);div.appendChild(ph);
+      if(manualSlots.length>1){
+        const rmSlot=document.createElement('button');rmSlot.className='remove-slot-btn';rmSlot.style.opacity='1';rmSlot.style.background='rgba(255,255,255,0.05)';rmSlot.style.borderColor='var(--border)';rmSlot.style.color='var(--muted)';
+        rmSlot.textContent='✕';rmSlot.onclick=(e)=>{e.stopPropagation();manualSlots.splice(i,1);renderManualSpread();updateManualUI();};
+        div.appendChild(rmSlot);
+      }
     }
     area.appendChild(div);
   });
-  // Add slot button
   const addDiv=document.createElement('div');addDiv.style.cssText='display:flex;flex-direction:column;align-items:center;gap:10px;';
-  const spacer=document.createElement('div');spacer.className='manual-slot-num';spacer.innerHTML='&nbsp;';
-  addDiv.appendChild(spacer);
+  const spacer=document.createElement('div');spacer.className='manual-slot-num';spacer.innerHTML='&nbsp;';addDiv.appendChild(spacer);
   const addBtn=document.createElement('button');addBtn.className='add-slot-btn';
   addBtn.innerHTML='<span class="plus-icon">+</span><span class="plus-text">Agregar</span>';
   addBtn.onclick=()=>{manualSlots.push({card:null});renderManualSpread();updateManualUI();};
-  addDiv.appendChild(addBtn);
-  area.appendChild(addDiv);
-  updateManualUI();
+  addDiv.appendChild(addBtn);area.appendChild(addDiv);updateManualUI();
 }
-
 function updateManualUI(){
-  const hasCards=manualSlots.some(s=>s.card);
-  document.getElementById('manual-interpret-btn').disabled=!hasCards;
-  document.getElementById('manual-clear-btn').style.display=hasCards?'block':'none';
+  const has=manualSlots.some(s=>s.card);
+  document.getElementById('manual-interpret-btn').disabled=!has;
+  document.getElementById('manual-clear-btn').style.display=has?'block':'none';
 }
-
 function clearManualSpread(){
   manualSlots=[{card:null},{card:null},{card:null}];
   document.getElementById('manual-reading').classList.remove('visible');
@@ -445,29 +433,18 @@ function clearManualSpread(){
   renderManualSpread();
 }
 
-// ═══ CARD PICKER ═══
+/* ═══ CARD PICKER ═══ */
 function openPicker(slotIndex){
   if(!cardsLoaded){alert('El mazo aún se está cargando.');return;}
-  activePickerSlot=slotIndex;
-  document.getElementById('picker-search').value='';
-  pickerFilter='all';
+  activePickerSlot=slotIndex;document.getElementById('picker-search').value='';pickerFilter='all';
   document.querySelectorAll('.picker-filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-  renderPickerList();
-  document.getElementById('picker-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  setTimeout(()=>document.getElementById('picker-search').focus(),100);
+  renderPickerList();document.getElementById('picker-overlay').classList.add('open');
+  document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('picker-search').focus(),100);
 }
 function closePicker(e){if(e.target===document.getElementById('picker-overlay'))closePickerDirect();}
 function closePickerDirect(){document.getElementById('picker-overlay').classList.remove('open');document.body.style.overflow='';activePickerSlot=null;}
-
-function setPickerFilter(f,btn){
-  pickerFilter=f;
-  document.querySelectorAll('.picker-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPickerList();
-}
+function setPickerFilter(f,btn){pickerFilter=f;document.querySelectorAll('.picker-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPickerList();}
 function filterPicker(){renderPickerList();}
-
 function renderPickerList(){
   const q=document.getElementById('picker-search').value.toLowerCase();
   const usedNames=manualSlots.filter(s=>s.card).map(s=>s.card['Card Name']);
@@ -480,55 +457,37 @@ function renderPickerList(){
   if(list.length===0){container.innerHTML='<div class="picker-empty">No se encontraron cartas</div>';return;}
   container.innerHTML=list.map(c=>{
     const used=usedNames.includes(c['Card Name']);
-    return`<div class="picker-item" style="${used?'opacity:0.35;pointer-events:none;':''}" onclick="selectCard(${JSON.stringify(c).replace(/"/g,'&quot;')})">
-      <span class="picker-item-emoji">${getCardSymbol(c)}</span>
-      <div class="picker-item-info"><div class="picker-item-name">${c['Card Name']}</div><div class="picker-item-meta">${c['Core Theme']||''}</div></div>
-      <span class="picker-item-badge">${c['Card Number']||''}</span>
-    </div>`;
+    return`<div class="picker-item" style="${used?'opacity:0.3;pointer-events:none;':''}" onclick="selectCard(${JSON.stringify(c).replace(/"/g,'&quot;')})"><span class="picker-item-emoji">${getCardSymbol(c)}</span><div class="picker-item-info"><div class="picker-item-name">${c['Card Name']}</div><div class="picker-item-meta">${c['Core Theme']||''}</div></div><span class="picker-item-badge">${c['Card Number']||''}</span></div>`;
   }).join('');
 }
+function selectCard(card){if(activePickerSlot===null)return;manualSlots[activePickerSlot].card=card;closePickerDirect();renderManualSpread();}
 
-function selectCard(card){
-  if(activePickerSlot===null)return;
-  manualSlots[activePickerSlot].card=card;
-  closePickerDirect();
-  renderManualSpread();
-}
-
-// ═══ INTERPRET MANUAL SPREAD ═══
+/* ═══ INTERPRET ═══ */
 async function interpretManualSpread(){
-  const cards=manualSlots.filter(s=>s.card).map(s=>s.card);
-  if(cards.length===0)return;
-  const btn=document.getElementById('manual-interpret-btn');
-  const readingEl=document.getElementById('manual-reading');
-  const textEl=document.getElementById('manual-reading-text');
-  btn.disabled=true;btn.textContent='Interpretando...';
-  readingEl.classList.add('visible');
+  const cards=manualSlots.filter(s=>s.card).map(s=>s.card);if(cards.length===0)return;
+  const btn=document.getElementById('manual-interpret-btn'),readingEl=document.getElementById('manual-reading'),textEl=document.getElementById('manual-reading-text');
+  btn.disabled=true;btn.textContent='Interpretando...';readingEl.classList.add('visible');
   textEl.innerHTML='<span style="opacity:0.5;font-style:italic;">Leyendo las cartas...</span>';
   const desc=cards.map((c,i)=>`Posición ${i+1}: ${c['Card Name']} — ${c['Core Theme']}`).join('\n');
-  const countWord=cards.length===1?'una carta':cards.length===2?'dos cartas':cards.length===3?'tres cartas':`${cards.length} cartas`;
+  const cw=cards.length===1?'una carta':cards.length===2?'dos cartas':cards.length===3?'tres cartas':`${cards.length} cartas`;
   try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:`Sos una lectora de tarot poética y perspicaz, del Solar Kingdom Tarot.\nLa persona tiró ${countWord} físicamente:\n${desc}\nEscribí una interpretación en español rioplatense, unificando todas las cartas en una narrativa fluida. Usá tono lírico, íntimo y directo. Si es una sola carta, hablá de su energía del momento. Si son varias, tejé una historia entre ellas. Mencioná cada carta naturalmente. Terminá con una pregunta o invitación reflexiva. Máximo 120 palabras. Respondé SOLO con la interpretación.`}]})});
+    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:`Sos una lectora de tarot poética y perspicaz, del Solar Kingdom Tarot.\nLa persona tiró ${cw} físicamente:\n${desc}\nEscribí una interpretación en español rioplatense, unificando todas las cartas en narrativa fluida. Tono lírico, íntimo, directo. Si es una carta, hablá de su energía. Si son varias, tejé una historia. Mencioná cada carta naturalmente. Terminá con pregunta o invitación reflexiva. Máximo 120 palabras. Respondé SOLO con la interpretación.`}]})});
     const d=await r.json();textEl.textContent=d.content?.[0]?.text||'No pude generar la lectura.';
   }catch(e){
     if(cards.length===1)textEl.textContent=`${cards[0]['Card Name']} te habla hoy de ${(cards[0]['Core Theme']||'').toLowerCase()}. Escuchá su mensaje.`;
-    else textEl.textContent=cards.map(c=>c['Card Name']).join(' y ')+' conversan entre sí sobre tu momento presente.';
+    else textEl.textContent=cards.map(c=>c['Card Name']).join(' y ')+' conversan sobre tu momento presente.';
   }
   btn.disabled=false;btn.textContent='✦ Interpretar Tirada';
 }
 
-// ═══ MAZO VIEW ═══
-function renderMazo(cards){
-  document.getElementById('loading-mazo').style.display='none';
-  document.getElementById('cards-grid').style.display='grid';
-  filteredCards=cards;renderGrid(filteredCards);
-}
+/* ═══ MAZO ═══ */
+function renderMazo(cards){document.getElementById('loading-mazo').style.display='none';document.getElementById('cards-grid').style.display='grid';filteredCards=cards;renderGrid(filteredCards);}
 function renderGrid(cards){
   const grid=document.getElementById('cards-grid'),empty=document.getElementById('empty-state');
   if(cards.length===0){grid.style.display='none';empty.style.display='block';return;}
   empty.style.display='none';grid.style.display='grid';
   grid.innerHTML=cards.map(c=>{
-    const et=(c['Energy Type']||[]).slice(0,2).map(e=>`<span class="mini-badge" style="background:rgba(193,123,158,0.1);border-color:rgba(193,123,158,0.3);color:var(--pink)">${e}</span>`).join('');
+    const et=(c['Energy Type']||[]).slice(0,2).map(e=>`<span class="mini-badge energy-badge">${e}</span>`).join('');
     return`<div class="grid-card" onclick="openCardDetail(${JSON.stringify(c).replace(/"/g,'&quot;')})"><div class="grid-card-top"><span class="grid-card-num">${c['Card Number']||''}</span><span style="font-size:36px">${getCardSymbol(c)}</span></div><div class="grid-card-body"><div class="grid-card-name">${c['Card Name']}</div><div class="grid-card-theme">${c['Core Theme']||''}</div><div class="grid-card-badges">${c['Element']?`<span class="mini-badge">${c['Element']}</span>`:''}${et}</div></div></div>`;
   }).join('');
 }
@@ -543,14 +502,23 @@ function applyFilters(){
   });renderGrid(filteredCards);
 }
 
-// ═══ CARD DETAIL MODAL ═══
+/* ═══ MODAL ═══ */
 function openCardDetail(card){
   if(!card)return;
   const et=(card['Energy Type']||[]).map(e=>`<span class="tag energy">${e}</span>`).join('');
   const kwU=(card['Keywords Upright']||'').split(',').map(k=>`<span class="kw">${k.trim()}</span>`).join('');
   const kwR=(card['Keywords Reversed']||'').split(',').map(k=>`<span class="kw reversed">${k.trim()}</span>`).join('');
   const ynD=card['Yes / No']?`<span class="yes-no-badge ${YN_COLOR[card['Yes / No']]||'neutral'}">${card['Yes / No']}</span>`:'';
-  document.getElementById('modal-header').innerHTML=`<div class="modal-card-visual"><span class="modal-card-emoji">${getCardSymbol(card)}</span><span class="modal-card-num">${card['Card Number']||''}</span></div><div class="modal-card-info"><span class="modal-arcana-badge">${card['Arcana']||''} · ${card['Suit']||''}</span><h2 class="modal-name">${card['Card Name']}</h2><p class="modal-brief">${card['Brief Description']||''}</p><div class="modal-tags">${card['Element']?`<span class="tag element">✦ ${card['Element']}</span>`:''}${et}${ynD}</div></div>`;
+
+  document.getElementById('modal-header').innerHTML=`
+    <div class="modal-card-visual"><span class="modal-card-emoji">${getCardSymbol(card)}</span><span class="modal-card-num">${card['Card Number']||''}</span></div>
+    <div class="modal-card-info">
+      <span class="modal-arcana-badge">${card['Arcana']||''} · ${card['Suit']||''}</span>
+      <h2 class="modal-name">${card['Card Name']}</h2>
+      <p class="modal-brief">${card['Brief Description']||''}</p>
+      <div class="modal-tags">${card['Element']?`<span class="tag element">✦ ${card['Element']}</span>`:''}${et}${ynD}</div>
+    </div>`;
+
   document.getElementById('modal-body').innerHTML=`
     <div class="modal-section full"><p class="section-label">Keywords Upright</p><div class="keywords-row">${kwU}</div></div>
     ${kwR?`<div class="modal-section full"><p class="section-label">Keywords Reversed</p><div class="keywords-row">${kwR}</div></div>`:''}
@@ -565,8 +533,9 @@ function openCardDetail(card){
       ${card['Symbolism Notes']?`<div class="modal-section"><p class="section-label">Simbolismo</p><p class="section-text">${card['Symbolism Notes']}</p></div>`:''}
       ${card['Color Palette']?`<div class="modal-section"><p class="section-label">Paleta de Color</p><p class="section-text italic">${card['Color Palette']}</p></div>`:''}
     </div>
-    ${card['Affirmation']?`<div class="affirmation-box"><p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:10px">✦ Afirmación</p><p class="affirmation-text">"${card['Affirmation']}"</p></div>`:''}
+    ${card['Affirmation']?`<div class="affirmation-box"><p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);opacity:0.75;margin-bottom:10px">✦ Afirmación</p><p class="affirmation-text">"${card['Affirmation']}"</p></div>`:''}
     ${card['Personal Meaning']?`<div class="personal-box" style="margin-top:16px"><p class="section-label">Tu Significado Personal</p><p class="section-text italic">${card['Personal Meaning']}</p></div>`:''}`;
+
   document.getElementById('modal-overlay').classList.add('open');document.body.style.overflow='hidden';
 }
 function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
