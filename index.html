@@ -413,6 +413,7 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
         <button class="layer-btn active" onclick="toggleLayer('shimmer',this)">Chimes</button>
         <button class="layer-btn active" onclick="toggleLayer('wind',this)">Wind</button>
       </div>
+      <button class="music-stop-btn" onclick="stopAmbient()">⏹ Detener</button>
     </div>
   </div>
 </div>
@@ -780,7 +781,8 @@ class SolarAmbient{
   _startWind(){if(this.layers.wind)return;const ctx=this.ctx,bufLen=ctx.sampleRate*2,buf=ctx.createBuffer(1,bufLen,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<bufLen;i++)d[i]=Math.random()*2-1;const src=ctx.createBufferSource();src.buffer=buf;src.loop=true;const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=700;bp.Q.value=0.7;const lfo1=ctx.createOscillator();lfo1.type='sine';lfo1.frequency.value=0.025;const lfo1G=ctx.createGain();lfo1G.gain.value=500;lfo1.connect(lfo1G);lfo1G.connect(bp.frequency);const g=ctx.createGain();g.gain.setValueAtTime(0,ctx.currentTime);g.gain.linearRampToValueAtTime(0.02,ctx.currentTime+4);this.layerGains.wind=g;const lfo2=ctx.createOscillator();lfo2.type='sine';lfo2.frequency.value=0.055;const lfo2G=ctx.createGain();lfo2G.gain.value=0.009;lfo2.connect(lfo2G);lfo2G.connect(g.gain);src.connect(bp);bp.connect(g);g.connect(this.masterGain);lfo1.start();lfo2.start();src.start();this.layers.wind={stop:()=>{try{src.stop()}catch(e){}try{lfo1.stop()}catch(e){}try{lfo2.stop()}catch(e){}}};}
 }
 const solarAmbient=new SolarAmbient();
-function toggleAmbient(){const toggle=document.getElementById('music-toggle'),controls=document.getElementById('music-controls');if(!solarAmbient.isPlaying){solarAmbient.start();toggle.classList.add('playing');controls.classList.add('open');}else{solarAmbient.stop();toggle.classList.remove('playing');controls.classList.remove('open');}}
+function toggleAmbient(){const toggle=document.getElementById('music-toggle'),controls=document.getElementById('music-controls');if(!solarAmbient.isPlaying){solarAmbient.start();toggle.classList.add('playing');controls.classList.add('open');}else{stopAmbient();}}
+function stopAmbient(){const toggle=document.getElementById('music-toggle'),controls=document.getElementById('music-controls');solarAmbient.stop();toggle.classList.remove('playing');controls.classList.remove('open');}
 function setAmbientVolume(val){solarAmbient.setVolume(val/100);}
 function toggleLayer(name,btn){solarAmbient.toggleLayer(name);btn.classList.toggle('active');}
 
