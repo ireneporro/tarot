@@ -402,18 +402,20 @@ header::after{content:'';position:absolute;bottom:-1px;left:10%;right:10%;height
       <span class="music-label">Frecuencias</span>
     </div>
     <div class="music-box-bottom" id="music-box-bottom">
-      <div class="volume-row">
-        <span class="vol-icon">🔈</span>
-        <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50" oninput="setAmbientVolume(this.value)"/>
-        <span class="vol-icon">🔊</span>
+      <div class="music-box-bottom-inner">
+        <div class="volume-row">
+          <span class="vol-icon">🔈</span>
+          <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50" oninput="setAmbientVolume(this.value)"/>
+          <span class="vol-icon">🔊</span>
+        </div>
+        <div class="ambient-layers">
+          <button class="layer-btn active" onclick="toggleLayer('drone',this)">Drone</button>
+          <button class="layer-btn active" onclick="toggleLayer('pad',this)">Pad</button>
+          <button class="layer-btn active" onclick="toggleLayer('shimmer',this)">Chimes</button>
+          <button class="layer-btn active" onclick="toggleLayer('wind',this)">Wind</button>
+        </div>
+        <button class="music-stop-btn" onclick="stopAmbient()">⏹ Detener</button>
       </div>
-      <div class="ambient-layers">
-        <button class="layer-btn active" onclick="toggleLayer('drone',this)">Drone</button>
-        <button class="layer-btn active" onclick="toggleLayer('pad',this)">Pad</button>
-        <button class="layer-btn active" onclick="toggleLayer('shimmer',this)">Chimes</button>
-        <button class="layer-btn active" onclick="toggleLayer('wind',this)">Wind</button>
-      </div>
-      <button class="music-stop-btn" onclick="stopAmbient()">⏹ Detener</button>
     </div>
   </div>
 </div>
@@ -489,7 +491,8 @@ async function init(){
   const cards=await fetchAllCards();
   if(cards&&cards.length>0){allCards=cards;cardsLoaded=true;
     const tg=getTimeGreeting();document.getElementById('tirada-phase').textContent=`${tg.icon} ${tg.phase}`;
-    document.getElementById('tirada-eyebrow').insertAdjacentHTML('afterend',`<p style="font-size:20px;font-style:italic;color:var(--gold2);margin-bottom:8px;opacity:0.8">${tg.greeting}</p>`);
+    const eyebrow=document.getElementById('tirada-date');
+    if(eyebrow)eyebrow.insertAdjacentHTML('afterend',`<p style="font-size:20px;font-style:italic;color:var(--gold2);margin-bottom:8px;opacity:0.8">${tg.greeting}</p>`);
     renderMazo(cards);setDailyCard();updateStreak();}
   else{document.getElementById('tirada-phase').textContent='El mazo aguarda...';useFallbackCards();setDailyCard();updateStreak();}
 }
