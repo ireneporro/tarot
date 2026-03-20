@@ -400,16 +400,7 @@ async function generateDailyReading(cards){
   }catch(e){
     console.log('Using fallback reading:',e);
     const c0=cards[0],c1=cards[1],c2=cards[2];
-    const T={
-      'New beginnings, infinite potential, leap of faith':'nuevos comienzos e infinito potencial','Willpower, manifestation, mastery of elements':'voluntad, manifestación y dominio','Intuition, mystery, sacred knowledge':'intuición, misterio y sabiduría sagrada','Abundance, fertility, creative nurturing':'abundancia, fertilidad y nutrición creativa','Authority, structure, fatherly protection':'autoridad, estructura y protección','Tradition, sacred teaching, spiritual institution':'tradición y enseñanza sagrada','Union, choice, alignment of values':'unión, elección y alineación de valores','Willpower, victory through discipline, forward motion':'voluntad, victoria y avance','Inner strength, compassion over force, courage':'fortaleza interior, compasión y coraje','Solitude, inner guidance, the search for truth':'soledad, guía interior y búsqueda de verdad','Cycles, fate, turning points':'ciclos, destino y puntos de giro','Truth, fairness, cause and effect':'verdad, justicia y causa-efecto','Surrender, new perspective, voluntary pause':'rendirse, nueva perspectiva y pausa voluntaria','Transformation, endings, inevitable change':'transformación, finales y cambio inevitable','Balance, alchemy, moderation, divine flow':'equilibrio, alquimia y flujo divino','Bondage, materialism, shadow self, illusion of constraint':'ataduras, materialismo y la sombra interior','Sudden upheaval, revelation, necessary destruction':'sacudida repentina, revelación y destrucción necesaria','Hope, healing, divine inspiration':'esperanza, sanación e inspiración divina','Illusion, subconscious, fear, hidden depths':'ilusión, subconsciente y profundidades ocultas','Joy, vitality, success, clarity':'alegría, vitalidad, éxito y claridad','Awakening, reckoning, higher calling':'despertar, ajuste de cuentas y llamado superior','Completion, wholeness, fulfillment, integration':'completitud, plenitud e integración'
-    };
-    function trad(theme){return T[theme]||theme.toLowerCase();}
-    const fb=[];
-    fb.push(`Desde el pasado, ${c0['Card Name']} llega con la energía de ${trad(c0['Core Theme'])}. Esta carta te invita a reconocer lo que ya viviste y cómo esa experiencia sigue latiendo en vos hoy.`);
-    fb.push(`En tu presente, ${c1['Card Name']} ocupa el centro de tu tirada. Su mensaje habla de ${trad(c1['Core Theme'])}. Es un momento para prestar atención a lo que sentís y a lo que el universo te está mostrando.`);
-    fb.push(`Mirando hacia el futuro, ${c2['Card Name']} ilumina lo que viene: ${trad(c2['Core Theme'])}. El camino se abre si escuchás el mensaje de tus cartas.`);
-    fb.push(`Tu afirmación de hoy: "${c1['Affirmation']||c0['Affirmation']||''}"`);
-    textEl.textContent=fb.join(' ');
+    textEl.textContent=`Desde el pasado, ${c0['Card Name']} llega para recordarte lo que ya viviste y cómo esa experiencia sigue latiendo en vos. En tu presente, ${c1['Card Name']} ocupa el centro de tu tirada — es la energía que te rodea ahora mismo. Prestale atención, porque su mensaje es clave para este momento de tu vida. Mirando hacia el futuro, ${c2['Card Name']} ilumina lo que viene si seguís el camino que las cartas te muestran. Tocá cada carta para leer su significado completo y descubrí qué tiene para decirte hoy. Tu afirmación: "${c1['Affirmation']||c0['Affirmation']||''}"`;
     const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
     if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
   }
@@ -504,17 +495,13 @@ async function interpretManualSpread(){
     if(aiText.length>20){textEl.textContent=aiText;}else{throw new Error('empty');}
   }catch(e){
     console.log('Using fallback interpretation:',e);
-    const T={
-      'New beginnings, infinite potential, leap of faith':'nuevos comienzos e infinito potencial','Willpower, manifestation, mastery of elements':'voluntad, manifestación y dominio','Intuition, mystery, sacred knowledge':'intuición, misterio y sabiduría sagrada','Abundance, fertility, creative nurturing':'abundancia, fertilidad y nutrición creativa','Authority, structure, fatherly protection':'autoridad, estructura y protección','Tradition, sacred teaching, spiritual institution':'tradición y enseñanza sagrada','Union, choice, alignment of values':'unión, elección y alineación de valores','Willpower, victory through discipline, forward motion':'voluntad, victoria y avance','Inner strength, compassion over force, courage':'fortaleza interior, compasión y coraje','Solitude, inner guidance, the search for truth':'soledad, guía interior y búsqueda de verdad','Cycles, fate, turning points':'ciclos, destino y puntos de giro','Truth, fairness, cause and effect':'verdad, justicia y causa-efecto','Surrender, new perspective, voluntary pause':'rendirse, nueva perspectiva y pausa voluntaria','Transformation, endings, inevitable change':'transformación, finales y cambio inevitable','Balance, alchemy, moderation, divine flow':'equilibrio, alquimia y flujo divino','Bondage, materialism, shadow self, illusion of constraint':'ataduras, materialismo y la sombra interior','Sudden upheaval, revelation, necessary destruction':'sacudida repentina, revelación y destrucción necesaria','Hope, healing, divine inspiration':'esperanza, sanación e inspiración divina','Illusion, subconscious, fear, hidden depths':'ilusión, subconsciente y profundidades ocultas','Joy, vitality, success, clarity':'alegría, vitalidad, éxito y claridad','Awakening, reckoning, higher calling':'despertar, ajuste de cuentas y llamado superior','Completion, wholeness, fulfillment, integration':'completitud, plenitud e integración'
-    };
-    function trad(theme){return T[theme]||theme.toLowerCase();}
     if(cards.length===1){
       const c=cards[0];
-      textEl.textContent=`${c['Card Name']} se presenta hoy con la energía de ${trad(c['Core Theme'])}. Esta carta te invita a prestar atención a lo que está moviendo en tu vida en este momento. Escuchá su mensaje con el corazón abierto. Tu afirmación: "${c['Affirmation']||''}"`;
+      textEl.textContent=`${c['Card Name']} se presenta en tu tirada con un mensaje claro para este momento. Tocá la carta para leer su significado completo — su energía emocional, espiritual, y la sombra que te advierte. Tu afirmación: "${c['Affirmation']||''}"`;
     }else{
-      let txt=cards.map((c,i)=>`${c['Card Name']} en la posición ${i+1} trae la energía de ${trad(c['Core Theme'])}.`).join(' ');
-      txt+=` Juntas, estas cartas te hablan de un momento de transición y crecimiento. Tu afirmación: "${cards[0]['Affirmation']||''}"`;
-      textEl.textContent=txt;
+      let names=cards.map(c=>c['Card Name']);
+      const last=names.pop();
+      textEl.textContent=`${names.join(', ')} y ${last} aparecen juntas en tu tirada, tejiendo una historia sobre tu momento presente. Cada carta tiene un mensaje único para vos — tocá cada una para descubrir su significado emocional, espiritual y la sombra que te advierte. Juntas, te hablan de un momento de transformación y crecimiento. Tu afirmación: "${cards[0]['Affirmation']||''}"`;
     }
   }
   btn.disabled=false;btn.textContent='✦ Interpretar Tirada';
