@@ -17,8 +17,12 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.028;pointer-events:none;z-index:9999}
-.stars-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 10%,rgba(155,111,196,0.12) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(193,123,158,0.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 80%)}
-.stars-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 60% 15%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 80% 40%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 92% 70%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 5% 80%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 45% 85%,rgba(201,168,76,0.7) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 70% 60%,rgba(201,168,76,0.5) 0%,transparent 100%)}
+.stars-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 10%,rgba(155,111,196,0.14) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(193,123,158,0.12) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.05) 0%,transparent 80%)}
+.stars-bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1.2px 1.2px at 15% 20%,rgba(255,255,255,0.7) 0%,transparent 100%),radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 80% 40%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1.2px 1.2px at 92% 70%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 5% 80%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(2px 2px at 45% 85%,rgba(201,168,76,0.8) 0%,transparent 100%),radial-gradient(2px 2px at 70% 60%,rgba(201,168,76,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 25% 42%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 50% 30%,rgba(201,168,76,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 75% 85%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1.3px 1.3px at 10% 65%,rgba(201,168,76,0.4) 0%,transparent 100%);animation:starDrift 90s linear infinite}
+@keyframes starDrift{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-12px) translateX(6px)}100%{transform:translateY(0) translateX(0)}}
+.stars-bg::before{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 22% 33%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 55% 72%,rgba(201,168,76,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 88% 22%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1.2px 1.2px at 40% 90%,rgba(193,123,158,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 68% 48%,rgba(255,255,255,0.35) 0%,transparent 100%),radial-gradient(2px 2px at 33% 12%,rgba(201,168,76,0.5) 0%,transparent 100%);animation:starTwinkle 4s ease-in-out infinite alternate}
+@keyframes starTwinkle{0%{opacity:0.6}50%{opacity:1}100%{opacity:0.7}}
+.vignette{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(8,5,16,0.5) 100%)}
 .app{position:relative;z-index:1;min-height:100vh}
 
 /* HEADER */
@@ -66,10 +70,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* DAILY MESSAGE */
-.daily-message{max-width:680px;margin:32px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:fadeUp 0.6s ease forwards;display:none}
+.daily-message{max-width:720px;margin:32px auto 0;background:linear-gradient(160deg,rgba(22,14,36,0.85),rgba(14,9,24,0.9));border:1px solid var(--border2);border-radius:20px;padding:36px 40px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:fadeUp 0.6s ease forwards;display:none;position:relative;overflow:hidden}
+.daily-message::before{content:'✦';position:absolute;top:-20px;right:-20px;font-size:120px;opacity:0.02;color:var(--gold);pointer-events:none}
 .daily-message.visible{display:block}
-.daily-message-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:12px}
-.daily-message-text{font-size:17px;font-style:italic;line-height:1.7;color:var(--text-bright)}
+.daily-message-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:16px}
+.daily-message-text{font-size:19px;font-style:italic;line-height:1.8;color:var(--text-bright);letter-spacing:0.01em}
 .yes-no-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;margin-top:16px;font-weight:400}
 .yes-no-badge.yes{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.35);color:#6ee7a0}
 .yes-no-badge.no{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.35);color:#fca5a5}
@@ -188,6 +193,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:20p
 </head>
 <body>
 <div class="stars-bg"></div>
+<div class="vignette"></div>
 <div class="app">
   <header>
     <div class="logo">☀️ SOLAR KINGDOM <span>/ TAROT</span></div>
@@ -390,7 +396,13 @@ async function generateDailyReading(cards){
   }catch(e){
     console.log('Using fallback reading:',e);
     const c0=cards[0],c1=cards[1],c2=cards[2];
-    textEl.textContent=`Desde el pasado, ${c0['Card Name']} trae la energía de ${(c0['Core Theme']||'').toLowerCase()}. ${c0['Emotional Meaning']||''} En tu presente, ${c1['Card Name']} habla de ${(c1['Core Theme']||'').toLowerCase()} — ${c1['Emotional Meaning']||''} ${c1['Spiritual Layer']||''} Mirando hacia adelante, ${c2['Card Name']} ilumina tu camino con ${(c2['Core Theme']||'').toLowerCase()}. ${c2['Career Meaning']||''} Cuidá la sombra de ${c2['Card Name']}: ${(c2['Psychological Shadow']||'').toLowerCase()}. Tu afirmación de hoy: "${c1['Affirmation']||''}"`;
+    const fb=[];
+    fb.push(`En la posición del pasado, ${c0['Card Name']} aparece trayendo la energía de lo que fue: ${c0['Brief Description']||c0['Core Theme']}`);
+    fb.push(`Tu presente está marcado por ${c1['Card Name']} — una carta que habla de ${(c1['Core Theme']||'').toLowerCase()}. En lo emocional, su mensaje es claro: ${c1['Emotional Meaning']||''} A nivel espiritual, ${c1['Spiritual Layer']||''}`);
+    fb.push(`Mirando hacia el futuro, ${c2['Card Name']} ilumina lo que viene: ${c2['Brief Description']||c2['Core Theme']}`);
+    if(c1['Psychological Shadow'])fb.push(`Ojo con la sombra que advierte ${c1['Card Name']}: ${c1['Psychological Shadow']}`);
+    if(c1['Affirmation'])fb.push(`Tu afirmación de hoy: "${c1['Affirmation']}"`);
+    textEl.textContent=fb.join('. ')+'.';
     const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
     if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
   }
