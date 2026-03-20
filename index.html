@@ -401,8 +401,6 @@ async function generateDailyReading(cards){
     console.log('Fallback reason:',e.message);
     const c0=cards[0],c1=cards[1],c2=cards[2];
     let fbText=`Desde el pasado, ${c0['Card Name']} llega para recordarte lo que ya viviste y cómo esa experiencia sigue latiendo en vos. En tu presente, ${c1['Card Name']} ocupa el centro de tu tirada — es la energía que te rodea ahora mismo. Prestale atención, porque su mensaje es clave para este momento de tu vida. Mirando hacia el futuro, ${c2['Card Name']} ilumina lo que viene si seguís el camino que las cartas te muestran. Tocá cada carta para leer su significado completo y descubrí qué tiene para decirte hoy. Tu afirmación: "${c1['Affirmation']||c0['Affirmation']||''}"`;
-    // DEBUG: show error temporarily
-    fbText+=`\n\n[DEBUG - borrar después: ${e.message}]`;
     textEl.textContent=fbText;
     const yn=cards[1]['Yes / No'],b=document.getElementById('ynbadge');
     if(yn){b.style.display='inline-flex';b.className=`yes-no-badge ${YN_COLOR[yn]||'neutral'}`;b.textContent=`Energía del presente: ${yn}`;}
